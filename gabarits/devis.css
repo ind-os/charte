@@ -1,0 +1,81 @@
+/* Le gabarit d'un devis, sur celui d'un document : il tient sur une page. */
+
+.en-tete { margin-bottom: 8mm; }
+
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8mm;
+  margin-bottom: 4mm;
+}
+.parties p { margin: 1.5mm 0 0; line-height: 1.45; white-space: pre-line; }
+
+.dates {
+  display: flex;
+  gap: 10mm;
+  margin: 0 0 6mm;
+  padding: 2.5mm 0;
+  border-top: 1px solid var(--gris-moyen);
+  border-bottom: 1px solid var(--gris-moyen);
+}
+.dates dt { margin-bottom: 1mm; }
+.dates dd { margin: 0; font-weight: 600; }
+
+h1 { font-size: 17pt; margin-bottom: 4mm; }
+
+.lignes { margin-top: 2mm; }
+.lignes td { padding-top: 1.6mm; padding-bottom: 1.6mm; }
+.lignes .montant { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; padding-right: 0; }
+.lignes .detail { color: var(--texte-discret); font-size: 9pt; }
+.lignes tfoot td { padding-top: 2.5mm; }
+.lignes .sous-total td, .lignes .remise td { color: var(--texte-discret); }
+.lignes .total td {
+  border-top: 2px solid var(--charbon);
+  border-bottom: 0;
+  font-size: 13pt;
+  font-weight: 750;
+  font-stretch: var(--titre-largeur);
+}
+
+.mention {
+  font-family: var(--police-reperes);
+  font-size: 7.5pt;
+  color: var(--texte-discret);
+}
+
+.conditions { margin: 4mm 0 0; border-top: 1px solid var(--gris-moyen); }
+.conditions div {
+  display: grid;
+  grid-template-columns: 38mm 1fr;
+  gap: 4mm;
+  padding: 2mm 0;
+  border-bottom: 1px solid var(--gris-moyen);
+}
+.conditions dt { padding-top: .6mm; }
+.conditions dd { margin: 0; }
+
+/* Le bloc que remplit l'entreprise : la barre jaune dit qu'il est à elle. */
+.acceptation {
+  margin-top: 7mm;
+  padding: 3mm 0 7mm 5mm;
+  border-left: 2.4mm solid var(--jaune);
+  break-inside: avoid;
+}
+.acceptation .champs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6mm;
+  margin-top: 4mm;
+}
+.acceptation .champs div {
+  height: 13mm;
+  border-bottom: 1px solid var(--charbon);
+  display: flex;
+  align-items: flex-end;
+}
+.acceptation .champs span {
+  margin-bottom: -5mm;
+  font-family: var(--police-reperes);
+  font-size: 7pt;
+  color: var(--texte-discret);
+}
