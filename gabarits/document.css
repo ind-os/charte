@@ -1,0 +1,139 @@
+/* Le gabarit d'un document A4 : le texte coule de page en page. */
+
+@page {
+  size: A4;
+  margin: 20mm 18mm 22mm;
+  background: #F7F7F5;
+
+  @bottom-left {
+    content: {{signature}};
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    font-size: 7pt;
+    letter-spacing: .04em;
+    color: #595956;
+  }
+
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    font-size: 7pt;
+    color: #595956;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--charbon);
+  font-family: var(--police-texte);
+  font-size: 10pt;
+  line-height: 1.5;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* L'en-tête : le logo et le nom du document. */
+.en-tete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18mm;
+}
+
+.logo { display: flex; align-items: center; gap: 2.6mm; }
+.logo svg { width: 7mm; height: 7mm; }
+.logo span { font-size: 17pt; line-height: 1; font-weight: 800; font-stretch: var(--titre-largeur); letter-spacing: -.02em; }
+
+.repere, .en-tete .nom {
+  font-family: var(--police-reperes);
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texte-discret);
+}
+
+/* Le titre, entre deux coins jaunes épais. */
+h1 {
+  display: inline-block;
+  margin: 0 0 10mm;
+  padding: 2.2mm 5mm;
+  font-size: 26pt;
+  line-height: 1.1;
+  font-weight: var(--titre-graisse);
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  background:
+    linear-gradient(var(--jaune), var(--jaune)) left top / 8mm 2.4mm no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) left top / 2.4mm 8mm no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) right bottom / 8mm 2.4mm no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) right bottom / 2.4mm 8mm no-repeat;
+}
+
+h2 {
+  margin: 9mm 0 3mm;
+  padding-top: 3mm;
+  border-top: 2px solid var(--charbon);
+  font-size: 14pt;
+  line-height: 1.2;
+  font-weight: 700;
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.01em;
+  break-after: avoid;
+}
+
+h3 {
+  margin: 6mm 0 2mm;
+  font-size: 11pt;
+  font-weight: 700;
+  break-after: avoid;
+}
+
+p, ul, ol { margin: 0 0 3mm; }
+ul, ol { padding-left: 5mm; }
+li { margin-bottom: 1mm; }
+li::marker { color: var(--texte-discret); }
+
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--gris-moyen); text-underline-offset: .2em; }
+
+strong { font-weight: 700; }
+
+code {
+  font-family: var(--police-reperes);
+  font-size: .88em;
+  padding: .2mm 1mm;
+  background: var(--surface);
+  border-radius: 1mm;
+}
+
+blockquote {
+  margin: 0 0 4mm;
+  padding: 3.5mm 4.5mm;
+  background: var(--surface);
+  border-radius: var(--angle);
+  color: #404040;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+table {
+  width: 100%;
+  margin: 0 0 4mm;
+  border-collapse: collapse;
+  border-top: 2px solid var(--charbon);
+  break-inside: avoid;
+}
+th {
+  text-align: left;
+  font-family: var(--police-reperes);
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texte-discret);
+}
+th, td { padding: 2mm 3mm 2mm 0; border-bottom: 1px solid var(--gris-moyen); vertical-align: top; }
+
+hr { border: 0; border-top: 1px solid var(--gris-moyen); margin: 6mm 0; }

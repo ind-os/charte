@@ -1,0 +1,12 @@
+{
+  "name": "@indos/charte",
+  "private": true,
+  "type": "module",
+  "description": "La charte d'Indos, et l'outil qui rend un document Markdown en PDF à sa charte",
+  "scripts": {
+    "pdf": "node outils/pdf.mjs"
+  },
+  "dependencies": {
+    "marked": "^15.0.0"
+  }
+}
