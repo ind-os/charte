@@ -1,0 +1,198 @@
+/* Le gabarit d'une offre : des pages A4 en paysage, une idée par page. */
+
+@page { size: A4 landscape; margin: 0; }
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--charbon);
+  font-family: var(--police-texte);
+  font-size: 11pt;
+  line-height: 1.45;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body { counter-reset: feuille chapitre; }
+
+/* Le numéro d'une page de l'offre suit les pages présentes : une page sans contenu ne laisse pas de trou. */
+.titre-de-page { counter-increment: chapitre; }
+.numero::before { content: counter(chapitre, decimal-leading-zero); }
+
+.page {
+  position: relative;
+  width: 297mm;
+  height: 210mm;
+  padding: 16mm 18mm 20mm;
+  overflow: hidden;
+  break-after: page;
+  counter-increment: feuille;
+  display: flex;
+  flex-direction: column;
+}
+.page:last-child { break-after: auto; }
+
+.repere {
+  font-family: var(--police-reperes);
+  font-size: 8pt;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texte-discret);
+}
+
+h1, h2, h3 { margin: 0; font-stretch: var(--titre-largeur); letter-spacing: -.02em; }
+h2 { font-size: 28pt; line-height: 1.05; font-weight: var(--titre-graisse); text-wrap: balance; }
+h3 { font-size: 14pt; line-height: 1.2; font-weight: 700; }
+p { margin: 0; }
+
+.titre-de-page { display: flex; flex-direction: column; gap: 3mm; padding-bottom: 6mm; margin-bottom: 9mm; border-bottom: 2px solid var(--charbon); }
+
+.pied {
+  position: absolute;
+  left: 18mm;
+  right: 18mm;
+  bottom: 9mm;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--police-reperes);
+  font-size: 7pt;
+  letter-spacing: .04em;
+  color: var(--texte-discret);
+}
+.pied::after { content: counter(feuille); }
+
+.corps { margin: auto 0; }
+.note { margin-top: auto; padding-bottom: 2mm; font-size: 9pt; color: var(--texte-discret); max-width: 200mm; }
+
+/* Les pièces : des blocs pleins, aux angles de la charte. */
+.piece { padding: 4mm 5mm; border-radius: var(--angle); font-weight: 600; }
+.jaune { background: var(--jaune); }
+.gris { background: var(--gris-moyen); }
+.charbon { background: var(--charbon); color: #FFFFFF; }
+
+/* Le lien entre deux choses : gris, épais, pointillé, sans flèche. */
+.lien, .lien-vertical { border-color: var(--gris-moyen); border-style: dashed; border-width: 0; }
+
+/* 1. La couverture */
+.couverture { padding-bottom: 16mm; }
+.haut { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 3mm; }
+.logo svg { width: 8mm; height: 8mm; }
+.logo span { font-size: 19pt; line-height: 1; font-weight: 800; font-stretch: var(--titre-largeur); letter-spacing: -.02em; }
+.centre { margin: auto 0; display: flex; flex-direction: column; gap: 7mm; max-width: 225mm; }
+.objectif { font-size: 38pt; line-height: 1.08; font-weight: var(--titre-graisse); letter-spacing: -.025em; text-wrap: balance; }
+.coins {
+  display: inline-block;
+  padding: 3mm 6mm;
+  background:
+    linear-gradient(var(--jaune), var(--jaune)) left top / 10mm 3mm no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) left top / 3mm 10mm no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) right bottom / 10mm 3mm no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) right bottom / 3mm 10mm no-repeat;
+}
+.bas { display: flex; justify-content: space-between; align-items: flex-end; }
+.contact { display: flex; flex-direction: column; gap: 1.5mm; font-size: 13pt; }
+.empilement { width: 56mm; display: flex; flex-direction: column; }
+.empilement .rang { display: flex; gap: 4mm; margin-top: 4mm; }
+.empilement .rang:first-child { margin-top: 0; }
+.empilement i { display: block; height: 16mm; border-radius: 2.5mm; }
+.empilement .l8 { flex: 8 1 0; }
+.empilement .l5 { flex: 5 1 0; }
+.empilement .l14 { flex: 1 1 0; }
+
+/* 2. Ce que vous nous avez dit */
+.defis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6mm; }
+.defi { display: flex; flex-direction: column; gap: 5mm; padding: 9mm 8mm; min-height: 80mm; background: var(--surface); border-radius: var(--angle-grand); }
+.defi blockquote { margin: 0; font-size: 15pt; line-height: 1.35; font-weight: 500; }
+.defi p { color: var(--texte-discret); font-size: 10pt; }
+
+/* 3. Ce que vous pourrez faire */
+.avant-apres { display: flex; flex-direction: column; gap: 4mm; }
+.avant-apres .entetes, .avant-apres .rangee { display: grid; grid-template-columns: 1fr 16mm 1fr; align-items: center; }
+.avant-apres { font-size: 12.5pt; }
+.avant { padding: 6mm 7mm; background: var(--surface); border-radius: var(--angle); color: var(--texte-discret); }
+.apres { padding: 6mm 7mm 6mm 6mm; background: #FFFFFF; border-left: 2.4mm solid var(--jaune); border-radius: var(--angle); font-weight: 600; }
+.lien { border-top-width: 1.2mm; margin: 0 2mm; }
+
+/* 4. Comment ça marche */
+.schema-os { display: grid; grid-template-columns: 52mm 14mm 1fr 62mm; gap: 0 6mm; align-items: center; }
+.outils { display: flex; flex-direction: column; gap: 3mm; }
+.outil { padding: 3.5mm 4mm; border: 1px solid var(--gris-moyen); border-radius: var(--angle); font-weight: 600; background: #FFFFFF; }
+.lien-vertical { align-self: stretch; margin: 18mm 0; border-left-width: 1.2mm; border-top-width: 1.2mm; border-bottom-width: 1.2mm; border-right-width: 0; border-radius: 0; }
+.os { display: flex; flex-direction: column; gap: 2mm; }
+.apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2mm; }
+.tuile { min-height: 20mm; padding: 4mm; display: flex; align-items: flex-end; border-radius: var(--angle); font-weight: 600; }
+.tuile.metier { background: var(--jaune); }
+.tuile.catalogue { background: var(--charbon); color: #FFFFFF; }
+.explication { display: flex; flex-direction: column; gap: 6mm; font-size: 10.5pt; }
+.legende { display: flex; flex-direction: column; gap: 2.5mm; font-size: 9pt; color: var(--texte-discret); }
+.legende div { display: flex; align-items: center; gap: 2.5mm; }
+.legende i { width: 4mm; height: 4mm; border-radius: 1mm; }
+
+/* 5. Le chemin */
+.frise { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10mm; position: relative; }
+.phase { position: relative; display: flex; flex-direction: column; gap: 3.5mm; padding: 7mm; background: #FFFFFF; border: 1px solid var(--gris-moyen); border-radius: var(--angle-grand); }
+.phase:first-child { border: 0; background: var(--surface); }
+.phase + .phase::before { content: ""; position: absolute; left: -10mm; top: 14mm; width: 10mm; border-top: 1.2mm dashed var(--gris-moyen); }
+.chantiers { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2mm; font-size: 10pt; }
+.chantiers li { display: flex; gap: 2.5mm; align-items: center; }
+.taille { flex: none; width: 6mm; height: 6mm; display: inline-grid; place-items: center; background: var(--charbon); color: #FFFFFF; border-radius: 1.2mm; font-family: var(--police-reperes); font-size: 7.5pt; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: 1mm; font-size: 9pt; color: var(--texte-discret); }
+.phase .prix { margin-top: auto; padding-top: 4mm; border-top: 2px solid var(--charbon); display: flex; justify-content: space-between; align-items: baseline; }
+.phase .prix strong { font-size: 16pt; font-weight: 750; font-stretch: var(--titre-largeur); }
+
+/* 6. Votre équipe */
+.equipe { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12mm; }
+.personne { display: grid; grid-template-columns: 52mm 1fr; gap: 7mm; align-items: start; }
+.personne img { width: 52mm; height: 64mm; object-fit: cover; border-radius: var(--angle); }
+.personne > div { display: flex; flex-direction: column; gap: 2.5mm; }
+.personne p { font-size: 11pt; color: #404040; }
+.personne h3 { font-size: 17pt; }
+
+/* 7. L'investissement */
+.investissement { width: 100%; border-collapse: collapse; border-top: 2px solid var(--charbon); font-size: 12pt; }
+.investissement td { padding: 4mm 0; border-bottom: 1px solid var(--gris-moyen); }
+.investissement td.repere { width: 40mm; }
+.investissement .montant { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; width: 45mm; }
+.investissement .discret td { color: var(--texte-discret); }
+.investissement .total td { border-top: 2px solid var(--charbon); border-bottom: 0; font-size: 18pt; font-weight: 750; font-stretch: var(--titre-largeur); }
+.suivi { margin-top: 8mm; display: flex; gap: 8mm; align-items: baseline; padding: 5mm 6mm; background: var(--surface); border-radius: var(--angle); }
+
+/* 8. Ce qui est à vous */
+.propriete { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+.propriete > div { display: flex; flex-direction: column; gap: 3mm; }
+.propriete .piece { padding: 6mm; font-size: 12pt; line-height: 1.35; }
+
+/* 9. La suite */
+.etapes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8mm; }
+.etapes li { display: flex; flex-direction: column; gap: 2.5mm; padding-top: 5mm; border-top: 2px solid var(--charbon); }
+.etapes strong { font-size: 15pt; font-weight: 700; font-stretch: var(--titre-largeur); }
+.etapes span:last-child { color: var(--texte-discret); }
+/* La première étape est celle de l'entreprise. */
+.etapes li:first-child { border-top: 2.4mm solid var(--jaune); padding-top: 3.1mm; }
+.signataire { margin-top: 12mm; display: flex; align-items: center; gap: 5mm; }
+.signataire img { width: 18mm; height: 22mm; object-fit: cover; border-radius: var(--angle); }
+.signataire strong { font-size: 13pt; }
+
+/* Pourquoi Indos */
+.arguments { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm 8mm; }
+.arguments article { display: flex; flex-direction: column; gap: 2mm; padding-top: 4mm; border-top: 2px solid var(--charbon); }
+.arguments h3 { font-size: 13pt; }
+.arguments p { font-size: 10pt; color: #404040; }
+.preuve { margin-top: 9mm; display: flex; gap: 8mm; align-items: baseline; padding: 5mm 6mm; background: var(--surface); border-radius: var(--angle); }
+
+/* Ce que ça rapporte */
+.gain { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8mm; }
+.chiffre { display: flex; flex-direction: column; gap: 3mm; padding: 9mm 8mm; background: var(--surface); border-radius: var(--angle-grand); }
+.chiffre.jaune { background: var(--jaune); }
+.chiffre.jaune .repere { color: var(--charbon); }
+.chiffre strong { font-size: 30pt; line-height: 1; font-weight: var(--titre-graisse); font-stretch: var(--titre-largeur); letter-spacing: -.02em; }
+.chiffre span:last-child { font-size: 10.5pt; color: #404040; }
+
+/* Sans risque */
+.garantie { padding: 3.5mm 0; border-bottom: 1px solid var(--gris-moyen); font-size: 11pt; }
+.repere + .garantie { border-top: 2px solid var(--charbon); }
+.garantie strong { display: block; font-size: 12pt; margin-bottom: .5mm; }

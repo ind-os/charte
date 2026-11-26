@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+{{{charte}}}
+{{{propre}}}
+</style>
+</head>
+<body>
+
+<!-- La couverture -->
+<section class="page couverture">
+  <header class="haut">
+    <div class="logo">{{{signe}}}<span>Indos</span></div>
+    <div class="repere">Offre · {{date_affiche}}</div>
+  </header>
+  <div class="centre">
+    <div class="repere">Offre à {{entreprise}}</div>
+    <h1 class="objectif"><span class="coins">{{objectif}}</span></h1>
+  </div>
+  <footer class="bas">
+    {{#personnes.0}}<div class="contact"><div class="repere">Votre contact</div><strong>{{nom}}</strong></div>{{/personnes.0}}
+    <div class="empilement" aria-hidden="true">
+      <div class="rang"><i class="jaune l8"></i><i class="gris l5"></i></div>
+      <div class="rang"><i class="gris l5"></i><i class="gris l8"></i></div>
+      <div class="rang"><i class="charbon l14"></i></div>
+    </div>
+  </footer>
+</section>
+
+<!-- Ce que vous nous avez dit -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Votre besoin</div><h2>Ce que vous nous avez dit</h2></header>
+  <div class="corps">
+  <div class="defis">
+    {{#defis}}
+    <article class="defi">
+      <h3>{{titre}}</h3>
+      {{#citation}}<blockquote>« {{citation}} »</blockquote>{{/citation}}
+      {{#detail}}<p>{{detail}}</p>{{/detail}}
+    </article>
+    {{/defis}}
+  </div>
+  </div>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- Ce que vous pourrez faire -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Demain</div><h2>Ce que vous pourrez faire</h2></header>
+  <div class="corps">
+  <div class="avant-apres">
+    <div class="entetes"><div class="repere">Aujourd'hui</div><div></div><div class="repere">Avec votre OS</div></div>
+    {{#avant_apres}}
+    <div class="rangee">
+      <div class="avant">{{avant}}</div>
+      <div class="lien" aria-hidden="true"></div>
+      <div class="apres">{{apres}}</div>
+    </div>
+    {{/avant_apres}}
+  </div>
+  </div>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- Comment ça marche -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Comment ça marche</div><h2>Votre système central</h2></header>
+  <div class="corps">
+  <div class="schema-os">
+    <div class="outils">
+      <div class="repere">Vos outils d'aujourd'hui</div>
+      {{#os.outils}}<div class="outil">{{.}}</div>{{/os.outils}}
+    </div>
+    <div class="lien-vertical" aria-hidden="true"></div>
+    <div class="os">
+      <div class="piece jaune">Vos données</div>
+      <div class="apps">
+        {{#os.apps_metier}}<div class="tuile metier">{{.}}</div>{{/os.apps_metier}}
+        {{#os.apps_catalogue}}<div class="tuile catalogue">{{.}}</div>{{/os.apps_catalogue}}
+      </div>
+      <div class="piece gris">L'IA, connectée à votre OS</div>
+      <div class="piece charbon">Le core d'Indos</div>
+    </div>
+    <div class="explication">
+      {{#os.explication}}<p>{{os.explication}}</p>{{/os.explication}}
+      <div class="legende">
+        <div><i class="jaune"></i>Fait pour vous, à vous</div>
+        <div><i class="charbon"></i>Une app du catalogue d'Indos</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- Pourquoi Indos -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Pourquoi Indos</div><h2>Ce qui change avec Indos</h2></header>
+  <div class="corps">
+  <div class="arguments">
+    <article><span class="repere">01</span><h3>L'IA travaille avec maîtrise</h3><p>Elle agit avec vos droits, et rien de plus. Elle ne fait rien de définitif, envoyer, supprimer, payer, sans votre accord. Tout ce qui se fait dans l'OS est gardé dans un journal.</p></article>
+    <article><span class="repere">02</span><h3>Du sur-mesure, sans repartir de zéro</h3><p>Ce que le catalogue d'Indos couvre déjà ne se redéveloppe pas : vous ne payez que ce qui est vraiment à vous.</p></article>
+    <article><span class="repere">03</span><h3>Des prix fixes, jamais à l'heure</h3><p>Chaque chantier a son prix, selon sa taille, connu avant de commencer.</p></article>
+    <article><span class="repere">04</span><h3>Vos données en Suisse</h3><p>Votre OS tourne sur votre serveur, en Suisse. Pendant la mise en place, vos données restent en Suisse, ou dans un pays que la Suisse reconnaît comme sûr.</p></article>
+    <article><span class="repere">05</span><h3>Un seul interlocuteur</h3><p>Votre contact vous suit du premier rendez-vous à chaque nouvelle demande.</p></article>
+    <article><span class="repere">06</span><h3>Un OS tenu à jour</h3><p>Chaque mise à jour d'Indos vous arrive avec ce qui change : les failles corrigées, les apps du catalogue améliorées.</p></article>
+  </div>
+  <div class="preuve">
+    <div class="repere">La preuve</div>
+    <p>AVQN travaille chaque jour dans son propre OS Indos.{{#references.length}} Ils nous font aussi confiance : {{#references}}<strong>{{.}}</strong> {{/references}}{{/references.length}}</p>
+  </div>
+  </div>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- Le chemin -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Le chemin</div><h2>Phase après phase</h2></header>
+  <div class="corps">
+  <div class="frise">
+    {{#phases}}
+    <article class="phase">
+      <div class="repere">Phase {{numero}}</div>
+      <h3>{{resultat}}</h3>
+      <ul class="chantiers">
+        {{#chantiers}}<li><span class="taille">{{taille}}</span>{{nom}}</li>{{/chantiers}}
+      </ul>
+      {{#options.length}}<div class="options"><div class="repere">En option</div>{{#options}}<div>{{nom}} · {{prix_affiche}}</div>{{/options}}</div>{{/options.length}}
+      <div class="prix"><strong>{{prix_affiche}}</strong><span class="repere">{{statut}}</span></div>
+    </article>
+    {{/phases}}
+  </div>
+  </div>
+  <p class="note">Vous vous engagez phase par phase. Chaque phase suivante commence par un atelier de conception qui confirme ses chantiers ; son prix tient six mois.</p>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- Votre équipe -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Votre équipe</div><h2>Les personnes qui travaillent pour vous</h2></header>
+  <div class="corps">
+  <div class="equipe">
+    {{#personnes}}
+    <article class="personne">
+      {{#photo}}<img src="{{{photo}}}" alt="">{{/photo}}
+      <div>
+        <h3>{{nom}}</h3>
+        <div class="repere">{{activites}}</div>
+        <p>{{texte}}</p>
+      </div>
+    </article>
+    {{/personnes}}
+  </div>
+  </div>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- L'investissement -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · L'investissement</div><h2>Ce que ça coûte</h2></header>
+  <div class="corps">
+  <table class="investissement">
+    <tbody>
+      {{#phases}}
+      <tr><td><strong>Phase {{numero}}</strong> · {{resultat}}</td><td class="repere">{{statut}}</td><td class="montant">{{prix_affiche}}</td></tr>
+      {{/phases}}
+    </tbody>
+    <tfoot>
+      {{#remise}}
+      <tr class="discret"><td>Sous-total</td><td></td><td class="montant">{{sous_total_affiche}}</td></tr>
+      <tr class="discret"><td>{{raison}}</td><td></td><td class="montant">{{montant_affiche}}</td></tr>
+      {{/remise}}
+      <tr class="total"><td>Total</td><td></td><td class="montant">{{total_affiche}}</td></tr>
+    </tfoot>
+  </table>
+  {{#suivi_mensuel}}<div class="suivi"><div class="repere">Ensuite, chaque mois</div><div><strong>{{formule}}</strong> · {{montant_affiche}} par mois</div></div>{{/suivi_mensuel}}
+  </div>
+  {{#emetteur.tva}}<p class="note">{{emetteur.tva}}</p>{{/emetteur.tva}}
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- Ce que ça rapporte -->
+{{#gain}}
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Ce que ça rapporte</div><h2>Ce que vous y gagnez</h2></header>
+  <div class="corps">
+  <div class="gain">
+    <div class="chiffre"><span class="repere">Le temps rendu</span><strong>{{heures_par_an}} heures</strong><span>par an, à {{heures_par_semaine}} heures par semaine</span></div>
+    <div class="chiffre"><span class="repere">Sa valeur</span><strong>{{net_affiche}}</strong><span>par an, à {{cout_horaire_affiche}} de l'heure{{#suivi_annuel_affiche}}, suivi mensuel déduit{{/suivi_annuel_affiche}}</span></div>
+    {{#mois}}<div class="chiffre jaune"><span class="repere">Le retour</span><strong>{{mois}} mois</strong><span>pour que le temps rendu paie l'investissement</span></div>{{/mois}}
+  </div>
+  </div>
+  <p class="note">Une estimation, tirée de vos propres chiffres à l'audit : {{heures_par_semaine}} heures par semaine sur les tâches que l'OS reprend, une heure de travail à {{cout_horaire_affiche}}, {{semaines_par_an}} semaines par an.</p>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+{{/gain}}
+
+<!-- Sans risque -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · Sans risque</div><h2>Votre OS vous appartient</h2></header>
+  <div class="corps">
+  <div class="propriete">
+    <div>
+      <div class="repere">Ce qui est à vous</div>
+      <div class="piece jaune">Vos données, votre configuration et votre thème.</div>
+      <div class="piece jaune">L'usage de votre OS pour votre activité : l'utiliser, le modifier, le faire évoluer, sans limite de serveurs, de postes ni d'utilisateurs.</div>
+      <div class="piece jaune">Une licence irrévocable : elle continue même si AVQN cesse son activité.</div>
+    </div>
+    <div>
+      <div class="repere">Vos garanties</div>
+      <div class="garantie"><strong>Aucun verrou</strong> Vous confiez votre OS au prestataire de votre choix.</div>
+      <div class="garantie"><strong>Phase par phase</strong> Vous vous engagez sur une phase à la fois, au prix ferme.</div>
+      <div class="garantie"><strong>Vous payez le résultat</strong> Le solde d'une phase est dû à la fin de sa recette.</div>
+      <div class="garantie"><strong>30 jours de garantie</strong> Un défaut de ce qui est livré se corrige sans frais.</div>
+      <div class="garantie"><strong>Libre d'arrêter</strong> Vous arrêtez les mises à jour quand vous voulez, ou les mettez en pause : votre OS continue de fonctionner.</div>
+    </div>
+  </div>
+  </div>
+  <p class="note">La licence d'Indos{{#licence}}, version du {{licence}}{{/licence}}, et les conditions générales d'AVQN.</p>
+  <footer class="pied"><span>Offre à {{entreprise}}</span></footer>
+</section>
+
+<!-- La suite -->
+<section class="page">
+  <header class="titre-de-page"><div class="repere"><span class="numero"></span> · La suite</div><h2>Pour commencer</h2></header>
+  <div class="corps">
+  <ol class="etapes">
+    <li><span class="repere">01</span><strong>Vous signez le devis</strong><span>Il reprend la première phase de cette offre.</span></li>
+    <li><span class="repere">02</span><strong>Votre OS naît</strong><span>Sur votre serveur, avec vos premiers outils branchés.</span></li>
+    <li><span class="repere">03</span><strong>La première recette</strong><span>Vous vérifiez avec nous que chaque chantier fait ce qui était prévu.</span></li>
+  </ol>
+  {{#personnes.0}}
+  <div class="signataire">
+    {{#photo}}<img src="{{{photo}}}" alt="">{{/photo}}
+    <div><div class="repere">Votre contact</div><strong>{{nom}}</strong></div>
+  </div>
+  {{/personnes.0}}
+  </div>
+  <p class="note">Font foi : le devis, les conditions générales d'AVQN et la licence d'Indos{{#licence}}, version du {{licence}}{{/licence}}.</p>
+  <footer class="pied"><span>{{signature_texte}}</span></footer>
+</section>
+
+</body>
+</html>
