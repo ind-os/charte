@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+{{{charte}}}
+{{{composants}}}
+{{{propre}}}
+</style>
+</head>
+<body>
+
+<!-- Le recto : le titre, le schéma de l'OS, les trois piliers -->
+<section class="page recto">
+  <header class="haut">
+    <div class="logo">{{{signe}}}<span>Indos</span></div>
+    {{#surtitre}}<div class="repere">{{surtitre}}</div>{{/surtitre}}
+  </header>
+
+  <div class="ouverture">
+    <h1 class="titre">{{{titre_encadre}}}</h1>
+    {{#chapeau}}<p class="chapeau">{{chapeau}}</p>{{/chapeau}}
+  </div>
+
+  {{#schema}}
+  <div class="schema">
+    <div class="reperes"><span class="repere">{{titre}}</span>{{#source}}<span class="repere">{{source}}</span>{{/source}}</div>
+    <div class="pieces">
+      {{#rangs}}<div class="rang">{{#pieces}}<div class="piece {{couleur}}"{{#part}} style="--part: {{part}}"{{/part}}>{{nom}}</div>{{/pieces}}</div>{{/rangs}}
+    </div>
+    <div class="legende">
+      <span><i class="pastille jaune"></i>Ce qui est à l'entreprise</span>
+      <span><i class="pastille"></i>Ce qui est à AVQN</span>
+    </div>
+  </div>
+  {{/schema}}
+
+  <div class="piliers">
+    {{#piliers}}
+    <div class="colonne">{{{dessin}}}<h2 class="intertitre">{{titre}}</h2><p>{{texte}}</p></div>
+    {{/piliers}}
+  </div>
+
+  <footer class="pied"><span>{{signature_texte}}</span></footer>
+</section>
+
+<!-- Le verso : les chiffres, le message, le chemin, le contact -->
+<section class="page verso">
+  <header class="haut">
+    <div class="logo">{{{signe}}}<span>Indos</span></div>
+    {{#surtitre}}<div class="repere">{{surtitre}}</div>{{/surtitre}}
+  </header>
+
+  {{#chiffres.length}}
+  <div class="chiffres carte">
+    {{#chiffres}}<div class="chiffre"><b>{{valeur}}</b><strong>{{nom}}</strong>{{#precision}}<span>{{precision}}</span>{{/precision}}</div>{{/chiffres}}
+  </div>
+  {{/chiffres.length}}
+
+  {{#message}}
+  <div class="message carte sur-charbon">
+    <div>
+      {{#etiquette}}<span class="etiquette">{{etiquette}}</span>{{/etiquette}}
+      <h2 class="titre-de-section">{{titre}}</h2>
+      {{#texte}}<p class="chapeau">{{texte}}</p>{{/texte}}
+    </div>
+    <svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="14" height="4" rx=".75" fill="#FFE600"/><rect x="0" y="5" width="14" height="4" rx=".75" fill="#595956"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#FFFFFF"/></svg>
+  </div>
+  {{/message}}
+
+  {{#chemin}}
+  <div class="chemin">
+    <div class="entete"><div class="repere">{{repere}}</div><h2 class="titre-de-section">{{titre}}</h2></div>
+    <div class="etapes">
+      {{#etapes}}
+      <div class="etape">
+        <div class="numero"><span></span><svg viewBox="0 0 14 14" aria-hidden="true"><rect class="a" x="0" y="0" width="8" height="4" rx=".75"/><rect class="b" x="9" y="0" width="5" height="4" rx=".75"/><rect class="c" x="0" y="5" width="5" height="4" rx=".75"/><rect class="c" x="6" y="5" width="8" height="4" rx=".75"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div>
+        <h3 class="intertitre">{{titre}}</h3><p>{{texte}}</p>
+      </div>
+      {{/etapes}}
+    </div>
+  </div>
+  {{/chemin}}
+
+  {{#contact}}
+  <div class="contact">
+    <div class="appel">
+      <h2 class="titre-de-section">{{{titre_encadre}}}</h2>
+      {{#texte}}<p class="chapeau">{{texte}}</p>{{/texte}}
+    </div>
+    <div class="coordonnees">
+      <div class="repere">Votre contact</div>
+      <strong>{{nom}}</strong>
+      {{#role}}<span>{{role}}</span>{{/role}}
+      {{#courriel}}<span>{{courriel}}</span>{{/courriel}}
+      {{#telephone}}<span>{{telephone}}</span>{{/telephone}}
+      {{#site}}<span>{{site}}</span>{{/site}}
+    </div>
+  </div>
+  {{/contact}}
+
+  <footer class="pied"><span>{{signature_texte}}</span></footer>
+</section>
+
+</body>
+</html>

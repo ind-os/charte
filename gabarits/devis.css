@@ -1,81 +1,100 @@
-/* Le gabarit d'un devis, sur celui d'un document : il tient sur une page. */
+/* Le gabarit d'un devis, sur celui d'un document : il tient sur une page.
+   Deux éléments le portent : le total entre deux traits charbon, et la zone à coins que signe l'entreprise. */
 
-.en-tete { margin-bottom: 8mm; }
+@page { margin: 15mm 18mm 17mm; }
 
+/* Le bon pour accord se pose au bas de la page, quel que soit le nombre de lignes. */
+.devis { display: flex; flex-direction: column; min-height: 263mm; }
+.devis > * { flex: none; }
+
+.devis .en-tete { margin-bottom: 9mm; }
+.reference { display: flex; align-items: center; gap: 3mm; }
+.reference .numero { font-family: var(--police-reperes); font-size: 10pt; font-weight: 500; letter-spacing: .06em; }
+
+/* L'objet du devis en est le titre ; les dates et le référent tiennent sur une ligne, dessous. */
+.objet { margin-bottom: 4.5mm; }
+.objet h1 {
+  margin: 2mm 0 0;
+  max-width: 165mm;
+  font-size: 21pt;
+  line-height: 1.1;
+  font-weight: var(--titre-graisse);
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+.precision { margin-top: 3mm; max-width: 140mm; color: var(--texte-discret); }
+.precision > :last-child { margin-bottom: 0; }
+.objet dl { margin: 4.5mm 0 0; display: flex; flex-wrap: wrap; gap: 1mm 10mm; }
+.objet dl div { display: flex; align-items: baseline; gap: 2.5mm; }
+.objet dd { margin: 0; font-weight: 600; }
+
+/* Les parties, sur une bande. */
 .parties {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8mm;
-  margin-bottom: 4mm;
+  padding: 3mm 0 4mm;
+  border-top: var(--trait) solid var(--charbon);
+  border-bottom: var(--filet) solid var(--gris-moyen);
 }
-.parties p { margin: 1.5mm 0 0; line-height: 1.45; white-space: pre-line; }
+.parties p { margin: 1.2mm 0 0; line-height: 1.45; white-space: pre-line; }
+.parties strong { font-size: 11pt; }
 
-.dates {
-  display: flex;
-  gap: 10mm;
-  margin: 0 0 6mm;
-  padding: 2.5mm 0;
-  border-top: 1px solid var(--gris-moyen);
-  border-bottom: 1px solid var(--gris-moyen);
-}
-.dates dt { margin-bottom: 1mm; }
-.dates dd { margin: 0; font-weight: 600; }
-
-h1 { font-size: 17pt; margin-bottom: 4mm; }
-
-.lignes { margin-top: 2mm; }
-.lignes td { padding-top: 1.6mm; padding-bottom: 1.6mm; }
-.lignes .montant { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; padding-right: 0; }
-.lignes .detail { color: var(--texte-discret); font-size: 9pt; }
-.lignes tfoot td { padding-top: 2.5mm; }
-.lignes .sous-total td, .lignes .remise td { color: var(--texte-discret); }
-.lignes .total td {
-  border-top: 2px solid var(--charbon);
-  border-bottom: 0;
-  font-size: 13pt;
-  font-weight: 750;
-  font-stretch: var(--titre-largeur);
-}
-
-.mention {
+/* Les lignes, numérotées. */
+.lignes { margin: 5mm 0 0; border-top: 0; counter-reset: ligne; }
+.lignes th { padding-top: 0; }
+.lignes td { padding-top: 1.7mm; padding-bottom: 1.7mm; }
+.lignes .rang { width: 10mm; padding-right: 0; }
+.lignes tbody tr { counter-increment: ligne; }
+.lignes tbody .rang::before {
+  content: counter(ligne, decimal-leading-zero);
   font-family: var(--police-reperes);
-  font-size: 7.5pt;
+  font-size: var(--taille-repere);
+  font-weight: 500;
   color: var(--texte-discret);
 }
+.lignes .montant { text-align: right; white-space: nowrap; padding-right: 0; }
+.lignes tbody .montant { font-weight: 600; }
+.lignes .detail { color: var(--texte-discret); font-size: 9pt; }
+.lignes tfoot td { padding-top: 1.5mm; padding-bottom: 1.5mm; color: var(--texte-discret); }
 
-.conditions { margin: 4mm 0 0; border-top: 1px solid var(--gris-moyen); }
-.conditions div {
-  display: grid;
-  grid-template-columns: 38mm 1fr;
-  gap: 4mm;
-  padding: 2mm 0;
-  border-bottom: 1px solid var(--gris-moyen);
-}
-.conditions dt { padding-top: .6mm; }
-.conditions dd { margin: 0; }
-
-/* Le bloc que remplit l'entreprise : la barre jaune dit qu'il est à elle. */
-.acceptation {
-  margin-top: 7mm;
-  padding: 3mm 0 7mm 5mm;
-  border-left: 2.4mm solid var(--jaune);
+/* Le total, entre deux traits charbon. */
+.total {
+  margin-top: 3mm;
+  padding: 4mm 0 4mm 10mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8mm;
+  border-top: var(--trait) solid var(--charbon);
+  border-bottom: var(--trait) solid var(--charbon);
   break-inside: avoid;
 }
-.acceptation .champs {
+.total .mention { margin-top: 1.2mm; font-size: 8pt; color: var(--texte-discret); }
+.total strong {
+  font-size: 22pt;
+  line-height: 1;
+  font-weight: var(--titre-graisse);
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Les conditions : le libellé dans la marge de repères, le texte à sa droite. */
+.conditions { margin: 5mm 0; }
+.conditions div {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6mm;
-  margin-top: 4mm;
+  grid-template-columns: var(--marge-de-reperes) minmax(0, 1fr);
+  align-items: baseline;
+  padding: 1.7mm 0;
+  border-bottom: var(--filet) solid var(--gris-moyen);
 }
-.acceptation .champs div {
-  height: 13mm;
-  border-bottom: 1px solid var(--charbon);
-  display: flex;
-  align-items: flex-end;
-}
-.acceptation .champs span {
-  margin-bottom: -5mm;
-  font-family: var(--police-reperes);
-  font-size: 7pt;
-  color: var(--texte-discret);
-}
+.conditions div:first-child { border-top: var(--filet) solid var(--gris-moyen); }
+.conditions dd { margin: 0; font-size: 9.5pt; line-height: 1.45; }
+
+/* Le bon pour accord : la zone à coins dit qu'elle est à l'entreprise. */
+.accord { margin: auto 0 0; padding: 5mm 8mm 5.5mm; break-inside: avoid; }
+.accord .champs { margin-top: 2mm; }
+.accord .champs > div::before { height: 10mm; }

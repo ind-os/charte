@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <style>
 {{{charte}}}
+{{{composants}}}
 {{{document}}}
 </style>
 </head>
-<body>
+<body{{#couverture}} class="avec-couverture"{{/couverture}}>
 <header class="en-tete">
   <div class="logo">{{{signe}}}<span>Indos</span></div>
-  <div class="nom">{{nom}}</div>
+  <div class="repere">{{nom}}</div>
 </header>
 <main>
 {{{contenu}}}
 </main>
+{{#couverture}}<div class="signe-de-couverture" aria-hidden="true">{{{signe}}}</div>{{/couverture}}
 </body>
 </html>

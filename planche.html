@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indos · la planche de la charte</title>
+<link rel="stylesheet" href="charte.css">
+<link rel="stylesheet" href="composants.css">
+<style>
+/* La planche montre chaque élément de la charte ; ses règles sont dans regles.md. */
+:root { --marge: clamp(20px, 5vw, 72px); --taille-titre: clamp(40px, 5vw, 64px); --taille-section: clamp(26px, 2.6vw, 34px); }
+p, h1, h2, h3, figure { margin: 0; }
+a { color: inherit; }
+.planche { padding: 0 max(var(--marge), calc((100% - 1296px) / 2)) 96px; }
+.planche > header { min-height: 96px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.partie { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 30px 0 56px; border-top: var(--trait) solid var(--charbon); }
+.partie > .repere { padding-top: 10px; }
+.partie > div { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.partie .regle { max-width: 720px; color: var(--texte-discret); }
+.grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 24px 16px; }
+.nuancier { display: flex; height: 112px; border: 2px solid var(--charbon); border-radius: var(--angle); overflow: hidden; }
+.nuance { display: flex; gap: 10px; align-items: flex-start; }
+.nuance .pastille { margin-top: 3px; }
+.nuance .pastille.bordee { border: 1px solid var(--texte-discret); }
+.nuance strong { display: block; font-size: 15px; font-weight: 600; }
+.nuance code { display: block; font-family: var(--police-reperes); font-size: 12px; color: var(--texte-discret); }
+.nuance span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.35; color: var(--texte-discret); }
+.specimen { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: var(--filet) solid var(--gris-moyen); }
+.specimen:first-child { border-top: var(--filet) solid var(--gris-moyen); }
+.specimen code { font-family: var(--police-reperes); font-size: 12px; line-height: 1.5; color: var(--texte-discret); }
+.cadre { min-height: 200px; padding: 24px; display: flex; align-items: center; justify-content: center; gap: 26px; border: var(--filet) solid var(--gris-moyen); border-radius: var(--angle-grand); }
+.cadre.sur-charbon { border: 0; }
+.trois { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.dessin { display: flex; flex-direction: column; gap: 12px; }
+.dessin .cadre img { width: 96px; height: 96px; }
+.dessin strong { display: block; font-weight: 600; }
+.dessin .legende-de-dessin { display: block; margin-top: 4px; font-family: var(--police-reperes); font-size: 12px; color: var(--texte-discret); }
+.icone img { width: 96px; height: 96px; border-radius: 10px; display: block; margin-bottom: 12px; }
+.icone strong { font-size: 15px; font-weight: 600; }
+.rangee { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.exemple { display: flex; flex-direction: column; gap: 10px; }
+.gabarits a { font-weight: 600; text-underline-offset: .2em; text-decoration-color: var(--gris-moyen); text-decoration-thickness: 2px; }
+@media (max-width: 860px) { .partie, .specimen { grid-template-columns: minmax(0, 1fr); } .trois { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<div class="planche">
+
+<header>
+  <div class="logo"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></div>
+  <div class="repere">La planche de la charte</div>
+</header>
+
+<section class="partie">
+  <div class="repere">Les couleurs</div>
+  <div>
+    <div class="nuancier" aria-hidden="true">
+      <div style="flex: 45; background: var(--fond)"></div><div style="flex: 16; background: var(--surface)"></div><div style="flex: 12; background: var(--gris-moyen)"></div><div style="flex: 8; background: var(--texte-discret)"></div><div style="flex: 14; background: var(--charbon)"></div><div style="flex: 5; background: var(--jaune)"></div>
+    </div>
+    <div class="grille">
+      <div class="nuance"><i class="pastille bordee" style="background: var(--fond)"></i><div><strong>Fond</strong><code>#F7F7F5</code><span>La page.</span></div></div>
+      <div class="nuance"><i class="pastille" style="background: var(--surface)"></i><div><strong>Surface</strong><code>#ECECE9</code><span>Une carte, une tuile, un bloc de page.</span></div></div>
+      <div class="nuance"><i class="pastille" style="background: var(--gris-moyen)"></i><div><strong>Gris moyen</strong><code>#D1D1CD</code><span>Un filet ; ce qui est à AVQN dans un schéma.</span></div></div>
+      <div class="nuance"><i class="pastille" style="background: var(--texte-discret)"></i><div><strong>Texte discret</strong><code>#595956</code><span>Un chapeau, un repère, une précision.</span></div></div>
+      <div class="nuance"><i class="pastille" style="background: var(--charbon)"></i><div><strong>Charbon</strong><code>#131313</code><span>Le texte, le trait, le core, la masse d'une page.</span></div></div>
+      <div class="nuance"><i class="pastille" style="background: var(--jaune)"></i><div><strong>Jaune</strong><code>#FFE600</code><span>Ce qui est à l'entreprise.</span></div></div>
+    </div>
+    <p class="regle">Le nuancier donne les proportions d'une page : beaucoup de fond, des aplats de surface et de charbon, très peu de jaune.</p>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">La typographie</div>
+  <div>
+    <div>
+      <div class="specimen"><code>Le titre<br>Archivo 800, largeur 112 %</code><div class="titre">Lorem ipsum dolor</div></div>
+      <div class="specimen"><code>Le titre de section<br>Archivo 800, largeur 112 %</code><div class="titre-de-section">Sed do eiusmod tempor incididunt</div></div>
+      <div class="specimen"><code>L'intertitre<br>Archivo 700</code><div class="intertitre">Ut enim ad minim veniam</div></div>
+      <div class="specimen"><code>Le chapeau<br>Archivo 400, texte discret</code><p class="chapeau">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></div>
+      <div class="specimen"><code>Le texte<br>Archivo 400</code><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p></div>
+      <div class="specimen"><code>Le repère<br>JetBrains Mono 500, capitales</code><div class="repere">Bloc 01 · Titre principal</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">Le logo</div>
+  <div>
+    <div class="trois">
+      <div class="cadre"><div class="logo" style="font-size: 64px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></div></div>
+      <div class="cadre sur-charbon"><div class="logo" style="font-size: 64px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#FFFFFF"/></svg><span>Indos</span></div></div>
+      <div class="cadre"><div class="logo" style="font-size: 106px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div><div class="logo" style="font-size: 47px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div><div class="logo" style="font-size: 31px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div><div class="logo" style="font-size: 16px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div></div>
+    </div>
+    <div class="rangee" style="gap: 40px"><div class="logo" style="font-size: 48px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></div><div class="logo" style="font-size: 32px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></div><div class="logo" style="font-size: 16px"><svg viewBox="0 0 14 14" role="img" aria-label="Indos"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></div></div>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">Les coins</div>
+  <div>
+    <div class="titre" style="font-size: clamp(34px, 4.4vw, 56px)"><span class="coins en-marge">Lorem ipsum</span> dolor sit amet consectetur.</div>
+    <div class="zone-a-coins" style="max-width: 720px">
+      <div class="repere">Bon pour accord · Lorem Ipsum SA</div>
+      <div class="champs"><div><span>Lieu et date</span></div><div><span>Nom</span></div><div><span>Signature</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">Les pièces d'un OS</div>
+  <div>
+    <div class="pieces" style="max-width: 760px">
+      <div class="rang"><div class="piece jaune" style="--part: 7">Vos données</div><div class="piece jaune" style="--part: 5">Votre thème</div></div>
+      <div class="rang"><div class="piece">Contacts</div><div class="piece">Agenda</div><div class="piece">Documents</div><div class="piece jaune" style="--part: 2">Vos apps</div></div>
+      <div class="rang"><div class="piece grise" style="--part: 7">La bibliothèque</div><div class="piece grise" style="--part: 5">Le kit</div></div>
+      <div class="rang"><div class="piece charbon">Le core</div></div>
+    </div>
+    <div class="legende"><span><i class="pastille"></i>Ce qui est à AVQN</span><span><i class="pastille jaune"></i>Ce qui est à l'entreprise</span></div>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">Les pictogrammes</div>
+  <div>
+    <div class="grille" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr))">
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/core.svg" alt=""></div><figcaption><strong>Le core</strong><span class="legende-de-dessin">à AVQN</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/bibliotheque.svg" alt=""></div><figcaption><strong>La bibliothèque</strong><span class="legende-de-dessin">à AVQN</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/kit.svg" alt=""></div><figcaption><strong>Le kit</strong><span class="legende-de-dessin">à AVQN</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/apps.svg" alt=""></div><figcaption><strong>Les apps</strong><span class="legende-de-dessin">à AVQN, et celles de l'entreprise</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/donnees.svg" alt=""></div><figcaption><strong>Les données</strong><span class="legende-de-dessin">à l'entreprise</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/theme.svg" alt=""></div><figcaption><strong>Le thème</strong><span class="legende-de-dessin">à l'entreprise</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/cle-de-l-entreprise.svg" alt=""></div><figcaption><strong>La clé de l'entreprise</strong><span class="legende-de-dessin">à l'entreprise</span></figcaption></figure>
+      <figure class="dessin"><div class="cadre"><img src="pictogrammes/coffre.svg" alt=""></div><figcaption><strong>Le coffre</strong><span class="legende-de-dessin">à l'entreprise</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">Les icônes des apps</div>
+  <div>
+    <div class="grille">
+      <figure class="icone"><img src="icones/agenda.svg" alt=""><figcaption><strong>Agenda</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/classeurs.svg" alt=""><figcaption><strong>Classeurs</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/contacts.svg" alt=""><figcaption><strong>Contacts</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/courrier.svg" alt=""><figcaption><strong>Courrier</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/documents.svg" alt=""><figcaption><strong>Documents</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/fichiers.svg" alt=""><figcaption><strong>Fichiers</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/kdrive.svg" alt=""><figcaption><strong>kDrive</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/liens.svg" alt=""><figcaption><strong>Liens</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/pages.svg" alt=""><figcaption><strong>Pages</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/presentations.svg" alt=""><figcaption><strong>Présentations</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/tableaux.svg" alt=""><figcaption><strong>Tableaux</strong></figcaption></figure>
+      <figure class="icone"><img src="icones/facturation.svg" alt=""><figcaption><strong>Facturation</strong></figcaption></figure>
+    </div>
+    <div class="legende"><span><i class="pastille charbon"></i>App du catalogue</span><span><i class="pastille jaune"></i>App de l'entreprise</span></div>
+  </div>
+</section>
+
+<section class="partie">
+  <div class="repere">Les composants</div>
+  <div>
+    <div class="exemple"><div class="repere">Les boutons</div><div class="rangee"><a class="bouton" href="#">Ut enim ad minim</a><a class="bouton contour" href="#">Quis nostrud</a><a class="bouton petit" href="#">Sit amet</a></div></div>
+    <div class="exemple"><div class="repere">Les étiquettes</div><div class="rangee"><span class="etiquette">Lorem ipsum</span><span class="etiquette charbon">Devis</span><span class="etiquette grise">Dolor</span></div></div>
+    <div class="trois">
+      <div class="carte"><div class="repere" style="margin-bottom: 14px">La carte</div><h3 class="intertitre" style="margin-bottom: 14px">Lorem ipsum</h3><ul class="puces"><li>Duis aute irure dolor</li><li>Excepteur sint occaecat</li><li>Sunt in culpa qui officia</li></ul></div>
+      <div class="carte sur-charbon"><div style="margin-bottom: 14px"><span class="etiquette">Lorem</span></div><h3 class="intertitre" style="margin-bottom: 14px">La carte sur charbon</h3><p class="discret" style="margin-bottom: 20px">Duis aute irure dolor in reprehenderit in voluptate.</p><div class="boutons"><a class="bouton" href="#">Dolor sit</a><a class="bouton contour" href="#">Amet</a></div></div>
+      <div style="display: flex; flex-direction: column; gap: 16px"><div class="chiffre"><b>00 %</b><strong>Le chiffre</strong><span>Quis nostrud exercitation</span></div><div class="tuile" style="max-width: 200px"><img src="icones/agenda.svg" alt="" width="64" height="64"><div><strong>La tuile</strong><span class="repere">Ut labore</span></div></div></div>
+    </div>
+    <div class="trois">
+      <div class="colonne"><img src="pictogrammes/core.svg" alt="" width="56" height="56"><h3 class="intertitre">La colonne</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+      <div class="etape"><div class="numero"><span>01</span></div><h3 class="intertitre">L'étape</h3><p>Ut enim ad minim veniam, quis nostrud exercitation.</p></div>
+      <div class="visuel"><img src="pictogrammes/kit.svg" alt="" style="width: 28%; height: auto; object-fit: contain"><span class="repere">Le visuel 4:3</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="partie gabarits">
+  <div class="repere">Les gabarits</div>
+  <div>
+    <ul class="puces">
+      <li><span><a href="gabarits/page.html">La page web</a> : quatorze blocs, à prendre et à ordonner.</span></li>
+      <li><span>Le document, le devis, l'offre et la plaquette se rendent en PDF : <code style="font-family: var(--police-reperes); font-size: 14px">node outils/pdf.mjs exemples/devis.md --gabarit devis</code></span></li>
+    </ul>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

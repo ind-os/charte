@@ -1,0 +1,98 @@
+/* Le gabarit d'une plaquette : une feuille A4, recto et verso.
+   Le recto dit ce qu'est Indos ; le verso, ce qu'il apporte et comment commencer. */
+
+:root {
+  --taille-repere: 7.5pt;
+  --taille-petit: 9pt;
+  --taille-texte: 10.5pt;
+  --taille-chapeau: 13.5pt;
+  --taille-intertitre: 13pt;
+  --taille-section: 22pt;
+  --taille-titre: 42pt;
+  --taille-chiffre: 30pt;
+  --gouttiere: 5mm;
+}
+
+@page { size: A4; margin: 0; }
+
+body { counter-reset: feuille; }
+p, h1, h2, h3 { margin: 0; }
+
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  padding: 16mm 16mm 22mm;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  break-after: page;
+  counter-increment: feuille;
+}
+.page:last-child { break-after: auto; }
+
+.haut { display: flex; justify-content: space-between; align-items: center; }
+.haut .logo { font-size: 20pt; }
+.verso .haut .logo { font-size: 14pt; }
+
+.pied {
+  position: absolute;
+  left: 16mm;
+  right: 16mm;
+  bottom: 9mm;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--police-reperes);
+  font-size: 7pt;
+  letter-spacing: .04em;
+  color: var(--texte-discret);
+}
+.pied::after { content: counter(feuille) " / 2"; }
+
+/* Le recto */
+.ouverture { display: flex; flex-direction: column; gap: 7mm; }
+.ouverture .titre { max-width: 172mm; text-wrap: balance; }
+.ouverture .chapeau { max-width: 128mm; }
+
+.schema { display: flex; flex-direction: column; gap: 3.5mm; }
+.schema .reperes { display: flex; justify-content: space-between; }
+.schema .pieces { gap: 1.5mm; }
+.schema .pieces .rang { gap: 1.5mm; }
+.schema .piece { min-height: 12.5mm; }
+
+.piliers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gouttiere); }
+.piliers .colonne { padding-top: 5mm; gap: 2.4mm; }
+.piliers .colonne svg { width: 12mm; height: 12mm; margin-bottom: 1.5mm; }
+.piliers .colonne p { font-size: 10pt; }
+
+/* Le verso */
+.verso .chiffres { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--gouttiere); padding: 6.5mm 7mm 6.5mm 2mm; }
+.verso .chiffre strong { font-size: 10.5pt; }
+
+.message { display: flex; align-items: center; justify-content: space-between; gap: 10mm; padding: 9mm 11mm; }
+.message > div { display: flex; flex-direction: column; align-items: flex-start; gap: 4.5mm; max-width: 126mm; }
+.message .titre-de-section { font-size: 23pt; line-height: 1.08; }
+.message .chapeau { font-size: 11.5pt; }
+.message > svg { flex: none; width: 30mm; height: 30mm; }
+
+.chemin { display: flex; flex-direction: column; gap: 7mm; }
+.chemin .entete { display: grid; grid-template-columns: 4fr 8fr; gap: var(--gouttiere); align-items: baseline; padding-top: 5mm; border-top: var(--trait) solid var(--charbon); }
+.chemin .etapes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gouttiere); counter-reset: etape; }
+.chemin .etape { counter-increment: etape; gap: 2mm; }
+.chemin .etape .numero span::before { content: counter(etape, decimal-leading-zero); }
+.chemin .etape .numero svg { width: 11mm; height: 11mm; }
+.chemin .etape p { font-size: 10pt; }
+/* Le signe s'assemble d'étape en étape : la pièce jaune arrive à la dernière. */
+.etape svg .a, .etape svg .b, .etape svg .c { fill: var(--surface); }
+.etape:nth-child(n+2) svg .c { fill: var(--gris-moyen); }
+.etape:last-child svg .a { fill: var(--jaune); }
+.etape:last-child svg .b, .etape:last-child svg .c { fill: var(--gris-moyen); }
+
+.contact { display: grid; grid-template-columns: 7fr 5fr; gap: 10mm; align-items: end; padding-top: 7mm; border-top: var(--trait) solid var(--charbon); }
+.contact .appel { display: flex; flex-direction: column; gap: 4mm; }
+.contact .appel .titre-de-section { font-size: 26pt; line-height: 1.14; text-wrap: wrap; }
+.contact .appel .chapeau { font-size: 11.5pt; max-width: 95mm; }
+.coordonnees { display: flex; flex-direction: column; gap: 1mm; padding: 6mm; background: var(--surface); border-radius: var(--angle-grand); }
+.coordonnees .repere { margin-bottom: 1.5mm; }
+.coordonnees strong { font-size: 13pt; font-weight: 700; }
