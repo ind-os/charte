@@ -1,0 +1,278 @@
+/* Les composants de la charte d'Indos, pour l'écran comme pour l'impression.
+   Un gabarit charge charte.css, puis ce fichier, puis sa propre feuille.
+   Les tailles viennent de l'échelle de charte.css : un gabarit qui la redonne redimensionne tous les composants. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--charbon);
+  font-family: var(--police-texte);
+  font-size: var(--taille-texte);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---------- Le texte ---------- */
+
+/* Le repère : un libellé en capitales, qui situe sans se lire en premier. */
+.repere {
+  font-family: var(--police-reperes);
+  font-size: var(--taille-repere);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texte-discret);
+}
+
+.titre, .titre-de-section, .intertitre, .chapeau { margin: 0; }
+
+.titre {
+  font-size: var(--taille-titre);
+  line-height: 1.06;
+  font-weight: var(--titre-graisse);
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.025em;
+}
+
+.titre-de-section {
+  font-size: var(--taille-section);
+  line-height: 1.1;
+  font-weight: var(--titre-graisse);
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+
+.intertitre { font-size: var(--taille-intertitre); line-height: 1.2; font-weight: 700; }
+
+.chapeau { font-size: var(--taille-chapeau); line-height: 1.45; color: var(--texte-discret); }
+
+.discret { color: var(--texte-discret); }
+
+/* ---------- Le logo ---------- */
+
+/* Le signe devant « Indos ». La taille du texte règle celle du signe. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .3em;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 800;
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.02em;
+  color: inherit;
+  text-decoration: none;
+}
+.logo svg { flex: none; width: .9em; height: .9em; }
+
+/* ---------- Le jaune ---------- */
+
+/* Les coins : deux coins épais encadrent ce qui est à l'entreprise.
+   .coins encadre un fragment court d'un titre ; .zone-a-coins, ce que l'entreprise remplit ou signe. */
+.coins, .zone-a-coins {
+  background:
+    linear-gradient(var(--jaune), var(--jaune)) left top / var(--coin-bras) var(--coin-epaisseur) no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) left top / var(--coin-epaisseur) var(--coin-bras) no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) right bottom / var(--coin-bras) var(--coin-epaisseur) no-repeat,
+    linear-gradient(var(--jaune), var(--jaune)) right bottom / var(--coin-epaisseur) var(--coin-bras) no-repeat;
+}
+.coins {
+  --coin-bras: .53em;
+  --coin-epaisseur: .15em;
+  display: inline-block;
+  padding: .12em .35em;
+}
+/* En début de ligne, le coin sort dans la marge : le texte reste aligné sur les lignes suivantes. */
+.coins.en-marge { margin-left: -.35em; }
+.zone-a-coins {
+  --coin-bras: calc(var(--gouttiere) * 1.5);
+  --coin-epaisseur: calc(var(--gouttiere) * .42);
+  padding: calc(var(--gouttiere) * 1.4) calc(var(--gouttiere) * 1.5);
+}
+
+/* Les champs que l'entreprise remplit à la main : un blanc, une ligne, un libellé dessous. */
+.champs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gouttiere); margin-top: calc(var(--gouttiere) * .7); }
+.champs > div { display: flex; flex-direction: column; gap: .5em; }
+.champs > div::before {
+  content: "";
+  height: calc(var(--gouttiere) * 2.6);
+  background: var(--blanc);
+  border-bottom: var(--filet) solid var(--charbon);
+  border-radius: var(--angle-petit) var(--angle-petit) 0 0;
+}
+.champs span { font-family: var(--police-reperes); font-size: calc(var(--taille-repere) * .93); color: var(--texte-discret); }
+
+/* L'étiquette : un mot en capitales sur un aplat. */
+.etiquette {
+  display: inline-block;
+  padding: .5em .85em;
+  background: var(--jaune);
+  color: var(--charbon);
+  border-radius: var(--angle-petit);
+  font-family: var(--police-reperes);
+  font-size: var(--taille-repere);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.etiquette.charbon { background: var(--charbon); color: var(--blanc); }
+.etiquette.grise { background: var(--surface); color: var(--charbon); }
+
+/* ---------- Le charbon ---------- */
+
+/* Tout ce qui se pose sur un fond charbon. */
+.sur-charbon { background: var(--charbon); color: var(--blanc); }
+.sur-charbon .repere { color: var(--discret-sur-charbon); }
+.sur-charbon .chapeau, .sur-charbon .discret { color: var(--gris-moyen); }
+
+/* ---------- Les boutons ---------- */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  background: var(--charbon);
+  color: var(--blanc);
+  border: 2px solid var(--charbon);
+  border-radius: var(--angle);
+  font-family: var(--police-texte);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.bouton:hover { background: var(--texte-discret); border-color: var(--texte-discret); }
+.bouton.contour { background: transparent; color: var(--charbon); }
+.bouton.contour:hover { background: var(--charbon); color: var(--blanc); border-color: var(--charbon); }
+.bouton.petit { min-height: 44px; padding: 0 20px; }
+.bouton:focus-visible { outline: 2px solid var(--charbon); outline-offset: 3px; }
+
+.sur-charbon .bouton { background: var(--fond); color: var(--charbon); border-color: var(--fond); }
+.sur-charbon .bouton:hover { background: var(--gris-moyen); border-color: var(--gris-moyen); }
+.sur-charbon .bouton.contour { background: transparent; color: var(--blanc); border-color: var(--blanc); }
+.sur-charbon .bouton.contour:hover { background: var(--blanc); color: var(--charbon); }
+.sur-charbon .bouton:focus-visible { outline-color: var(--blanc); }
+
+.boutons { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ---------- Les pièces ---------- */
+
+/* Les pièces d'un OS, en rangs. Le jaune est à l'entreprise, le gris et le charbon à AVQN.
+   La largeur d'une pièce est sa part du rang : style="--part: 7". */
+.pieces { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+.pieces .rang { display: flex; gap: 6px; }
+.piece {
+  flex: var(--part, 1) 1 0;
+  min-width: 0;
+  min-height: calc(var(--gouttiere) * 2.667);
+  padding: .5em 1.05em;
+  display: flex;
+  align-items: center;
+  border-radius: var(--angle);
+  background: var(--surface);
+}
+.piece.jaune { background: var(--jaune); }
+.piece.grise { background: var(--gris-moyen); }
+.piece.charbon { background: var(--charbon); color: var(--blanc); }
+.piece.blanche { background: var(--blanc); }
+
+/* La légende d'un schéma. */
+.legende { display: flex; flex-wrap: wrap; gap: .6em 1.6em; align-items: center; font-size: var(--taille-petit); }
+.legende > * { display: inline-flex; align-items: center; gap: .65em; }
+.pastille { flex: none; width: 1.05em; height: 1.05em; border-radius: 3px; background: var(--gris-moyen); }
+.pastille.jaune { background: var(--jaune); }
+.pastille.charbon { background: var(--charbon); }
+.pastille.claire { background: var(--surface); }
+
+/* ---------- Les listes ---------- */
+
+/* Les puces carrées. */
+.puces { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .8em; }
+.puces li { display: flex; gap: .8em; align-items: flex-start; }
+.puces li::before {
+  content: "";
+  flex: none;
+  width: .7em;
+  height: .7em;
+  margin-top: .37em;
+  background: currentColor;
+  border-radius: 3px;
+}
+
+/* ---------- Les cartes ---------- */
+
+/* La carte : un aplat aux grands angles, qui tient un contenu entier. */
+.carte {
+  padding: calc(var(--gouttiere) * 1.5);
+  background: var(--surface);
+  border-radius: var(--angle-grand);
+}
+.carte.sur-charbon { background: var(--charbon); }
+.carte.blanche { background: var(--blanc); }
+
+/* La tuile : une icône, un nom, un repère. */
+.tuile {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--surface);
+  border-radius: var(--angle-grand);
+}
+.tuile svg { width: 64px; height: 64px; }
+.tuile strong { display: block; font-size: 18px; font-weight: 700; line-height: 1.25; }
+.tuile .repere { display: block; margin-top: 4px; font-size: 11px; }
+
+/* Le chiffre : une mesure, son nom, sa précision. */
+.chiffre { display: flex; flex-direction: column; gap: .14em; padding-left: var(--gouttiere); border-left: var(--filet) solid var(--gris-moyen); }
+.chiffre b {
+  font-size: var(--taille-chiffre);
+  line-height: 1;
+  font-weight: var(--titre-graisse);
+  font-stretch: var(--titre-largeur);
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+.chiffre strong { margin-top: .5em; font-weight: 600; }
+.chiffre span { font-size: var(--taille-petit); color: var(--texte-discret); }
+
+/* La colonne : sous un trait charbon, un pictogramme, un titre, un texte. */
+.colonne { display: flex; flex-direction: column; gap: .9em; padding-top: calc(var(--gouttiere) * 1.167); border-top: var(--trait) solid var(--charbon); }
+.colonne svg { width: 3.3em; height: 3.3em; margin-bottom: .45em; }
+.colonne p { margin: 0; max-width: 22em; color: var(--texte-discret); }
+
+/* L'étape : son numéro, le signe qui s'assemble, un titre, un texte. */
+.etape { display: flex; flex-direction: column; gap: .8em; padding-top: calc(var(--gouttiere) * .833); border-top: var(--filet) solid var(--gris-moyen); }
+.etape .numero { display: flex; justify-content: space-between; align-items: flex-start; font-family: var(--police-reperes); font-size: calc(var(--taille-repere) * 1.083); font-weight: 500; color: var(--texte-discret); }
+.etape .numero svg { width: 4.3em; height: 4.3em; }
+.etape p { margin: 0; max-width: 20em; color: var(--texte-discret); }
+
+/* Le visuel : l'emplacement d'une image, au format 4:3. */
+.visuel {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-radius: var(--angle-grand);
+  overflow: hidden;
+}
+.visuel.sur-charbon { background: var(--charbon); }
+.visuel > svg { width: 28%; height: auto; }
+.visuel > img { width: 100%; height: 100%; object-fit: cover; }
+.visuel > .repere { position: absolute; left: 24px; bottom: 20px; }

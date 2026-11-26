@@ -4,15 +4,27 @@
 <meta charset="utf-8">
 <style>
 {{{charte}}}
+{{{composants}}}
 {{{document}}}
 {{{propre}}}
 </style>
 </head>
-<body>
+<body class="devis">
 <header class="en-tete">
   <div class="logo">{{{signe}}}<span>Indos</span></div>
-  <div class="nom">Devis {{numero}}</div>
+  <div class="reference"><span class="etiquette charbon">Devis</span><span class="numero">{{numero}}</span></div>
 </header>
+
+<section class="objet">
+  <div class="repere">Objet</div>
+  <h1>{{objet}}</h1>
+  {{#contenu}}<div class="precision">{{{contenu}}}</div>{{/contenu}}
+  <dl>
+    <div><dt class="repere">Date</dt><dd>{{date_affiche}}</dd></div>
+    <div><dt class="repere">Valable jusqu'au</dt><dd>{{valable_jusqu_au_affiche}}</dd></div>
+    {{#referent}}<div><dt class="repere">Votre référent</dt><dd>{{referent}}</dd></div>{{/referent}}
+  </dl>
+</section>
 
 <section class="parties">
   <div>
@@ -25,33 +37,28 @@
   </div>
 </section>
 
-<dl class="dates">
-  <div><dt class="repere">Date</dt><dd>{{date_affiche}}</dd></div>
-  <div><dt class="repere">Valable jusqu'au</dt><dd>{{valable_jusqu_au_affiche}}</dd></div>
-  {{#referent}}<div><dt class="repere">Votre référent</dt><dd>{{referent}}</dd></div>{{/referent}}
-</dl>
-
-<h1>{{objet}}</h1>
-
-{{{contenu}}}
-
 <table class="lignes">
-  <thead><tr><th>Désignation</th><th class="montant">Montant</th></tr></thead>
+  <thead><tr><th class="rang"></th><th>Désignation</th><th class="montant">Montant</th></tr></thead>
   <tbody>
     {{#lignes}}
-    <tr><td><strong>{{designation}}</strong>{{#detail}}<br><span class="detail">{{detail}}</span>{{/detail}}</td><td class="montant">{{montant_affiche}}</td></tr>
+    <tr><td class="rang"></td><td><strong>{{designation}}</strong>{{#detail}}<br><span class="detail">{{detail}}</span>{{/detail}}</td><td class="montant">{{montant_affiche}}</td></tr>
     {{/lignes}}
   </tbody>
+  {{#remise}}
   <tfoot>
-    {{#remise}}
-    <tr class="sous-total"><td>Sous-total</td><td class="montant">{{sous_total_affiche}}</td></tr>
-    <tr class="remise"><td>{{raison}}</td><td class="montant">{{montant_affiche}}</td></tr>
-    {{/remise}}
-    <tr class="total"><td>Total</td><td class="montant">{{total_affiche}}</td></tr>
+    <tr><td class="rang"></td><td>Sous-total</td><td class="montant">{{sous_total_affiche}}</td></tr>
+    <tr><td class="rang"></td><td>{{raison}}</td><td class="montant">{{montant_affiche}}</td></tr>
   </tfoot>
+  {{/remise}}
 </table>
 
-{{#emetteur.tva}}<p class="mention">{{emetteur.tva}}</p>{{/emetteur.tva}}
+<div class="total">
+  <div>
+    <div class="repere">Total</div>
+    {{#emetteur.tva}}<div class="mention">{{emetteur.tva}}</div>{{/emetteur.tva}}
+  </div>
+  <strong>{{total_affiche}}</strong>
+</div>
 
 <dl class="conditions">
   {{#suivi_mensuel}}<div><dt class="repere">Le suivi mensuel</dt><dd>{{formule}} : {{montant_affiche}} par mois, selon les conditions générales.</dd></div>{{/suivi_mensuel}}
@@ -59,7 +66,7 @@
   <div><dt class="repere">Ce qui fait foi</dt><dd>Ce devis, les conditions générales d'{{emetteur.nom}} et la licence d'Indos{{#licence}}, version du {{licence}}{{/licence}}, jointes. En acceptant ce devis, l'entreprise accepte les conditions générales.</dd></div>
 </dl>
 
-<section class="acceptation">
+<section class="accord zone-a-coins">
   <div class="repere">Bon pour accord · {{entreprise.nom}}</div>
   <div class="champs">
     <div><span>Lieu et date</span></div>

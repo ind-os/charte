@@ -1,0 +1,195 @@
+/* Le gabarit d'une page web : quatorze blocs, à prendre et à ordonner.
+   La page tient sur un téléphone comme sur un grand écran. */
+
+:root {
+  --marge: clamp(20px, 5vw, 72px);
+  --respiration: clamp(64px, 8.4vw, 120px);
+  --taille-titre: clamp(44px, 5.6vw, 80px);
+  --taille-section: clamp(32px, 3.4vw, 48px);
+  --taille-chiffre: clamp(48px, 5vw, 72px);
+  --taille-intertitre: clamp(21px, 1.7vw, 24px);
+}
+
+a { color: inherit; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; }
+
+/* Un bloc occupe la largeur de l'écran ; son contenu tient dans 1296 px. */
+.bloc { padding: var(--respiration) max(var(--marge), calc((100% - 1296px) / 2)); }
+.bloc.surface { background: var(--surface); }
+.bloc.serre { padding-block: calc(var(--respiration) * .5); }
+
+.douze { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gouttiere); align-items: center; }
+.pile { display: flex; flex-direction: column; gap: var(--gouttiere); align-items: flex-start; }
+.trois { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gouttiere); }
+
+/* La barre du haut */
+.barre-du-haut {
+  min-height: 96px;
+  padding: 0 max(var(--marge), calc((100% - 1296px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gouttiere);
+}
+.barre-du-haut nav { display: flex; align-items: center; gap: 36px; font-size: 16px; font-weight: 500; }
+.barre-du-haut nav a:not(.bouton) { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.barre-du-haut nav a:not(.bouton):hover { color: var(--texte-discret); }
+
+/* 01 · Le titre principal */
+.titre-principal { padding-block: calc(var(--respiration) * .9); }
+.titre-principal .texte { grid-column: span 7; gap: 28px; }
+.titre-principal .chapeau { max-width: 520px; }
+.titre-principal .schema { grid-column: span 5; display: flex; flex-direction: column; gap: 14px; }
+.titre-principal .schema .reperes { display: flex; justify-content: space-between; gap: 12px; }
+
+/* 02 · Le bandeau de repères */
+.bandeau-de-reperes {
+  margin: 0 max(var(--marge), calc((100% - 1296px) / 2));
+  padding: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 48px;
+  border-top: var(--filet) solid var(--gris-moyen);
+  border-bottom: var(--filet) solid var(--gris-moyen);
+}
+.bandeau-de-reperes ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 64px; font-size: 22px; font-weight: 800; font-stretch: var(--titre-largeur); letter-spacing: -.02em; color: var(--texte-discret); }
+
+/* 03 et 04 · Le texte et le visuel */
+.texte-et-visuel .texte { grid-column: span 5; }
+.texte-et-visuel .visuel { grid-column: 7 / span 6; }
+.texte-et-visuel.visuel-a-gauche .visuel { grid-column: span 6; }
+.texte-et-visuel.visuel-a-gauche .texte { grid-column: 8 / span 5; }
+.texte-et-visuel .puces { font-weight: 500; }
+.texte-et-visuel .points { align-self: stretch; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gouttiere); padding-top: var(--gouttiere); border-top: var(--trait) solid var(--charbon); }
+.texte-et-visuel .points strong { display: block; margin-bottom: 6px; font-size: 22px; font-weight: 700; line-height: 1.2; }
+.texte-et-visuel .points span { font-size: var(--taille-petit); line-height: 1.4; color: var(--texte-discret); }
+
+/* 05 · Les chiffres */
+.chiffres { display: flex; flex-direction: column; gap: 40px; }
+.chiffres .rang { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gouttiere); }
+
+/* 06 · Les trois colonnes à pictogrammes */
+.trois-colonnes { display: flex; flex-direction: column; gap: 64px; }
+.entete-de-bloc { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gouttiere); align-items: start; }
+.entete-de-bloc .repere { grid-column: span 4; padding-top: 14px; }
+.entete-de-bloc .titre-de-section { grid-column: span 8; }
+
+/* 07 · Le bandeau charbon */
+.bandeau-charbon { padding-block: calc(var(--respiration) * .35); }
+.bandeau-charbon .carte { padding: clamp(28px, 5vw, 72px); display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+.bandeau-charbon .texte { max-width: 760px; gap: 28px; }
+.bandeau-charbon .surtitre { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; }
+.bandeau-charbon .titre-de-section { font-size: clamp(34px, 3.9vw, 56px); line-height: 1.08; }
+.bandeau-charbon .chapeau { max-width: 560px; font-size: 18px; }
+.bandeau-charbon > .carte > svg { flex: none; width: clamp(120px, 14vw, 200px); height: auto; }
+
+/* 08 · La grille de tuiles */
+.grille-de-tuiles .texte { grid-column: span 4; }
+.grille-de-tuiles .tuiles { grid-column: 6 / span 7; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+
+/* 09 · La citation */
+.citation { display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center; }
+.citation .guillemets { display: flex; gap: 8px; }
+.citation .guillemets i { width: 22px; height: 32px; background: var(--jaune); border-radius: var(--angle-petit); }
+.citation blockquote { margin: 0; max-width: 900px; font-size: clamp(26px, 2.8vw, 40px); line-height: 1.2; font-weight: 700; font-stretch: var(--titre-largeur); letter-spacing: -.02em; text-wrap: balance; }
+.citation .auteur { display: flex; gap: 14px; align-items: center; text-align: left; }
+.citation .auteur svg, .citation .auteur img { width: 48px; height: 48px; border-radius: var(--angle); }
+.citation .auteur strong { display: block; font-weight: 600; }
+.citation .auteur .repere { display: block; margin-top: 4px; }
+
+/* 10 · Les trois offres */
+.trois-offres { display: flex; flex-direction: column; gap: 56px; }
+.trois-offres > .pile { gap: 20px; }
+.trois-offres .titre-de-section { max-width: 760px; }
+.formule { display: flex; flex-direction: column; gap: 28px; }
+.formule header { display: flex; flex-direction: column; gap: 8px; }
+.formule header div { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.formule header p { font-size: 16px; line-height: 1.4; color: var(--texte-discret); }
+.formule.sur-charbon header p { color: var(--gris-moyen); }
+.formule .prix { display: flex; align-items: baseline; gap: 10px; }
+.formule .prix b { font-size: clamp(40px, 3.9vw, 56px); line-height: 1; font-weight: 800; font-stretch: var(--titre-largeur); letter-spacing: -.03em; }
+.formule .puces { padding-top: 28px; border-top: var(--filet) solid var(--gris-moyen); font-size: 16px; }
+.formule.sur-charbon .puces { border-top-color: var(--texte-discret); }
+.formule .bouton { margin-top: auto; }
+
+/* 11 · Les étapes numérotées */
+.etapes { display: flex; flex-direction: column; gap: 56px; }
+.etapes .entete-de-bloc { padding-top: 28px; border-top: var(--trait) solid var(--charbon); }
+
+/* 12 · Les questions */
+.questions { align-items: start; }
+.questions .texte { grid-column: span 4; }
+.questions .liste { grid-column: 6 / span 7; border-top: var(--trait) solid var(--charbon); }
+.question { border-bottom: var(--filet) solid var(--gris-moyen); }
+.question summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gouttiere);
+  padding: 26px 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+  list-style: none;
+}
+.question summary::-webkit-details-marker { display: none; }
+/* Le bouton d'une question : un plus sur charbon ; ouverte, un moins sur jaune. */
+.question summary::after {
+  content: "";
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--angle);
+  background:
+    linear-gradient(var(--fond), var(--fond)) center / 16px 4px no-repeat,
+    linear-gradient(var(--fond), var(--fond)) center / 4px 16px no-repeat,
+    var(--charbon);
+}
+.question[open] summary::after { background: linear-gradient(var(--charbon), var(--charbon)) center / 16px 4px no-repeat, var(--jaune); }
+.question summary:focus-visible { outline: 2px solid var(--charbon); outline-offset: 4px; }
+.question p { max-width: 640px; padding-bottom: 26px; margin-top: -12px; color: var(--texte-discret); }
+
+/* 13 · L'appel final */
+.appel-final { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
+.appel-final .titre { max-width: 1000px; font-size: clamp(40px, 5vw, 72px); line-height: 1.08; }
+.appel-final .chapeau { max-width: 560px; }
+.appel-final .boutons { justify-content: center; }
+
+/* 14 · Le pied de page */
+.pied-de-page { margin: 0 max(var(--marge), calc((100% - 1296px) / 2)); padding-top: 56px; border-top: var(--trait) solid var(--charbon); }
+.pied-de-page .douze { align-items: start; padding-bottom: 72px; }
+.pied-de-page .marque { grid-column: span 5; display: flex; flex-direction: column; gap: 20px; }
+.pied-de-page .logo { font-size: clamp(40px, 4.4vw, 64px); }
+.pied-de-page .marque p { max-width: 340px; font-size: 16px; color: var(--texte-discret); }
+.pied-de-page nav { grid-column: span 2; display: flex; flex-direction: column; gap: 4px; font-size: 16px; }
+.pied-de-page nav:first-of-type { grid-column: 7 / span 2; }
+.pied-de-page nav .repere { padding-bottom: 10px; }
+.pied-de-page nav a { display: flex; align-items: center; min-height: 44px; text-decoration: none; }
+.pied-de-page nav a:hover { color: var(--texte-discret); }
+.pied-de-page .mentions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 22px 0; border-top: var(--filet) solid var(--gris-moyen); }
+
+/* Sous 960 px, les colonnes s'empilent. */
+@media (max-width: 960px) {
+  .douze { grid-template-columns: minmax(0, 1fr); }
+  .douze > *, .entete-de-bloc > * { grid-column: 1 / -1 !important; }
+  .entete-de-bloc { grid-template-columns: minmax(0, 1fr); }
+  .entete-de-bloc .repere { padding-top: 0; }
+  .trois { grid-template-columns: minmax(0, 1fr); }
+  .chiffres .rang { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .texte-et-visuel.visuel-a-gauche .visuel { order: 2; }
+  .trois-colonnes, .etapes, .trois-offres { gap: 40px; }
+  .bandeau-charbon .carte { flex-direction: column; align-items: flex-start; }
+  .barre-du-haut nav a:not(.bouton) { display: none; }
+  .pied-de-page .douze { gap: 40px; padding-bottom: 48px; }
+  .coins.en-marge { margin-left: 0; }
+}
+
+@media (max-width: 560px) {
+  .grille-de-tuiles .tuiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pieces { font-size: 15px; }
+  .question summary { font-size: 19px; }
+}

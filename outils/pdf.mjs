@@ -2,7 +2,7 @@
 // Rend un document Markdown en PDF A4, à la charte d'Indos.
 // node outils/pdf.mjs <document.md> [--gabarit <nom>] [--sortie <fichier.pdf>] [--nom <nom>] [--emetteur <emetteur.json>] [--equipe <dossier>] [--signature <texte>]
 
-import { readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
+import { readFile, readdir, writeFile, mkdtemp, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -138,6 +138,7 @@ function preparer(champs) {
   if (champs.suivi_mensuel) {
     prepares.suivi_mensuel = { ...champs.suivi_mensuel, montant_affiche: enFrancs(Number(champs.suivi_mensuel.montant)) };
   }
+  prepares.couverture = champs.couverture === true || champs.couverture === 'oui';
   for (const cle of ['date', 'valable_jusqu_au']) {
     if (champs[cle]) prepares[`${cle}_affiche`] = enDate(champs[cle]);
   }
@@ -173,6 +174,65 @@ async function presenterLEquipe(roles, dossier) {
   return [...personnes.values()].map((personne) => ({ ...personne, activites: personne.activites.join(' · ') }));
 }
 
+// Les dessins d'un dossier de la charte, chacun sous le nom de son fichier.
+async function lireLesDessins(dossier) {
+  const chemin = join(racine, dossier);
+  if (!existsSync(chemin)) return {};
+  const fichiers = (await readdir(chemin)).filter((fichier) => fichier.endsWith('.svg'));
+  const dessins = await Promise.all(fichiers.map((fichier) => readFile(join(chemin, fichier), 'utf8')));
+  return Object.fromEntries(fichiers.map((fichier, rang) => [basename(fichier, '.svg'), dessins[rang].trim()]));
+}
+
+// Dans l'en-tête, un objet qui nomme un pictogramme ou une icône reçoit son dessin,
+// et un titre reçoit sa forme encadrée : *un fragment* s'y entoure de coins.
+function dessiner(valeur, dessins) {
+  if (Array.isArray(valeur)) return valeur.map((element) => dessiner(element, dessins));
+  if (!valeur || typeof valeur !== 'object') return valeur;
+  const objet = Object.fromEntries(Object.entries(valeur).map(([cle, v]) => [cle, dessiner(v, dessins)]));
+  if (typeof objet.titre === 'string') objet.titre_encadre = encadrer(objet.titre);
+  for (const sorte of ['pictogramme', 'icone']) {
+    const nom = objet[sorte];
+    if (typeof nom !== 'string') continue;
+    if (!dessins[sorte][nom]) throw new Error(`La charte n'a pas de ${sorte} « ${nom} ».`);
+    objet.dessin = dessins[sorte][nom];
+  }
+  return objet;
+}
+
+// Un titre de section qui commence par son numéro le donne à la marge de repères.
+// Dans un document aux sections numérotées à la main, une section sans numéro reste sans numéro.
+function sortirLesNumeros(html) {
+  const numerote = html.replace(/<h2([^>]*)>(\d+)[.)]\s+/g, (_, attributs, numero) => `<h2${attributs} data-numero="${numero.padStart(2, '0')}">`);
+  if (numerote === html) return html;
+  return numerote.replace(/<h2(?![^>]*data-numero)([^>]*)>/g, '<h2$1 data-numero="">');
+}
+
+// La ponctuation française : l'espace devant « ; : ! ? % » et à l'intérieur des guillemets ne se coupe pas en fin de ligne.
+// Le code reste tel quel.
+function lierLaPonctuation(html) {
+  let dansDuCode = 0;
+  return html.replace(/<[^>]+>|[^<]+/g, (morceau) => {
+    if (morceau.startsWith('<')) {
+      if (/^<(code|pre)\b/.test(morceau)) dansDuCode += 1;
+      if (/^<\/(code|pre)>/.test(morceau)) dansDuCode -= 1;
+      return morceau;
+    }
+    if (dansDuCode > 0) return morceau;
+    return morceau.replace(/ ([;:!?%»])/g, '\u00A0$1').replace(/« /g, '«\u00A0');
+  });
+}
+
+// Le titre, où *un fragment* s'encadre de coins ; en tête du titre, le coin sort dans la marge.
+function encadrer(titre) {
+  const echappe = String(titre).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return echappe.replace(/\*([^*]+)\*/g, (_, fragment, position) => `<span class="coins${position === 0 ? ' en-marge' : ''}">${fragment}</span>`);
+}
+
+// Le texte d'une chaîne CSS.
+function enChaineCss(texte) {
+  return `"${texte.replace(/["\\]/g, '\\$&')}"`;
+}
+
 async function lire(chemin) {
   return existsSync(chemin) ? readFile(chemin, 'utf8') : '';
 }
@@ -182,28 +242,35 @@ async function composer(options) {
   const emetteur = options.emetteur ? JSON.parse(await readFile(resolve(options.emetteur), 'utf8')) : undefined;
   const gabarit = join(racine, 'gabarits', `${options.gabarit}.html`);
   if (!existsSync(gabarit)) throw new Error(`Le gabarit « ${options.gabarit} » n'existe pas dans gabarits/.`);
-  const [page, charte, document, propre, signe, equipe] = await Promise.all([
+  const [page, charte, composants, document, propre, signe, signeSurCharbon, pictogrammes, icones, equipe] = await Promise.all([
     readFile(gabarit, 'utf8'),
     readFile(join(racine, 'charte.css'), 'utf8'),
+    readFile(join(racine, 'composants.css'), 'utf8'),
     readFile(join(racine, 'gabarits/document.css'), 'utf8'),
     options.gabarit === 'document' ? '' : lire(join(racine, 'gabarits', `${options.gabarit}.css`)),
     readFile(join(racine, 'logo/signe.svg'), 'utf8'),
+    readFile(join(racine, 'logo/signe-sur-charbon.svg'), 'utf8'),
+    lireLesDessins('pictogrammes'),
+    lireLesDessins('icones'),
     presenterLEquipe(champs.equipe, options.equipe),
   ]);
-  const signature = `"${signer(options, emetteur).replace(/["\\]/g, '\\$&')}"`;
   const premierTitre = /^#\s+(.+)$/m.exec(texte);
   const donnees = {
-    ...preparer(champs),
+    ...dessiner(preparer(champs), { pictogramme: pictogrammes, icone: icones }),
     emetteur,
     charte,
-    document: document.replace('{{signature}}', signature),
+    composants,
     propre,
     signature_texte: signer(options, emetteur),
     personnes: equipe,
     signe: signe.trim(),
-    contenu: texte.trim() ? marked.parse(texte) : '',
+    signe_sur_charbon: signeSurCharbon.trim(),
+    pictogrammes,
+    icones,
+    contenu: texte.trim() ? lierLaPonctuation(sortirLesNumeros(marked.parse(texte))) : '',
   };
-  donnees.nom = options.nom ?? Mustache.render(champs.nom ?? (premierTitre ? premierTitre[1].trim() : ''), donnees);
+  donnees.nom = options.nom ?? Mustache.render(champs.nom ?? (premierTitre ? premierTitre[1].replace(/[*_]/g, '').trim() : ''), donnees);
+  donnees.document = document.replace('{{signature}}', enChaineCss(donnees.signature_texte)).replace('{{nom}}', enChaineCss(donnees.nom));
   return Mustache.render(page, donnees);
 }
 

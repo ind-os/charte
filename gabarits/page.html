@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indos · le gabarit d'une page web</title>
+<link rel="stylesheet" href="../charte.css">
+<link rel="stylesheet" href="../composants.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+
+<header class="barre-du-haut">
+  <a class="logo" href="#"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></a>
+  <nav aria-label="Navigation principale">
+    <a href="#">Lorem</a><a href="#">Ipsum</a><a href="#">Dolor</a><a href="#">Consectetur</a>
+    <a class="bouton petit" href="#">Sit amet</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- 01 · Le titre principal -->
+<section class="bloc titre-principal douze">
+  <div class="texte pile">
+    <div class="repere">Bloc 01 · Titre principal</div>
+    <h1 class="titre"><span class="coins en-marge">Lorem ipsum</span><br>dolor sit amet<br>consectetur</h1>
+    <p class="chapeau">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div class="boutons"><a class="bouton" href="#">Ut enim ad minim</a><a class="bouton contour" href="#">Quis nostrud</a></div>
+  </div>
+  <div class="schema">
+    <div class="reperes"><span class="repere">Tempor incididunt</span><span class="repere">Ut labore</span></div>
+    <div class="pieces">
+      <div class="rang"><div class="piece jaune" style="--part: 7">Lorem</div><div class="piece jaune" style="--part: 5">Ipsum</div></div>
+      <div class="rang"><div class="piece">Dolor</div><div class="piece">Sit</div><div class="piece">Amet</div><div class="piece jaune">Elit</div></div>
+      <div class="rang"><div class="piece grise" style="--part: 5">Tempor</div><div class="piece grise" style="--part: 7">Labore</div></div>
+      <div class="rang"><div class="piece charbon">Consectetur adipiscing</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · Le bandeau de repères -->
+<section class="bandeau-de-reperes">
+  <div class="repere">Bloc 02 · Bandeau de repères</div>
+  <ul><li>Lorem</li><li>Ipsum&amp;Co</li><li>Dolor</li><li>Sitamet</li><li>Adipiscing</li></ul>
+</section>
+
+<!-- 03 · Le texte à gauche, le visuel à droite -->
+<section class="bloc texte-et-visuel douze">
+  <div class="texte pile">
+    <div class="repere">Bloc 03 · Texte à gauche, visuel à droite</div>
+    <h2 class="titre-de-section">Sed do eiusmod tempor incididunt</h2>
+    <p class="chapeau">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <ul class="puces"><li>Duis aute irure dolor in reprehenderit</li><li>Excepteur sint occaecat cupidatat</li><li>Sunt in culpa qui officia deserunt</li></ul>
+    <a class="bouton contour" href="#">Velit esse cillum</a>
+  </div>
+  <div class="visuel"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="3" height="10" rx=".75" fill="#131313"/><rect x="0" y="11" width="14" height="3" rx=".75" fill="#131313"/><rect x="11" y="5" width="3" height="5" rx=".75" fill="#D1D1CD"/><rect x="4" y="4" width="6" height="6" rx=".75" fill="#FFE600"/></svg><span class="repere">Visuel 4:3</span></div>
+</section>
+
+<!-- 04 · Le visuel à gauche, le texte à droite -->
+<section class="bloc texte-et-visuel visuel-a-gauche douze">
+  <div class="visuel sur-charbon"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#FFFFFF"/></svg><span class="repere">Visuel 4:3</span></div>
+  <div class="texte pile">
+    <div class="repere">Bloc 04 · Visuel à gauche, texte à droite</div>
+    <h2 class="titre-de-section">Duis aute irure dolor in voluptate</h2>
+    <p class="chapeau">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div class="points">
+      <div><strong>Lorem ipsum</strong><span>Ut enim ad minim veniam quis nostrud.</span></div>
+      <div><strong>Dolor sit</strong><span>Duis aute irure dolor in reprehenderit.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · Les chiffres -->
+<section class="bloc surface serre chiffres">
+  <div class="repere">Bloc 05 · Chiffres</div>
+  <div class="rang">
+    <div class="chiffre"><b>00</b><strong>Lorem ipsum dolor</strong><span>Sit amet consectetur</span></div>
+    <div class="chiffre"><b>000</b><strong>Adipiscing elit</strong><span>Sed do eiusmod tempor</span></div>
+    <div class="chiffre"><b>0,0</b><strong>Incididunt ut labore</strong><span>Et dolore magna</span></div>
+    <div class="chiffre"><b>00 %</b><strong>Ut enim ad minim</strong><span>Quis nostrud exercitation</span></div>
+  </div>
+</section>
+
+<!-- 06 · Les trois colonnes à pictogrammes -->
+<section class="bloc trois-colonnes">
+  <div class="entete-de-bloc">
+    <div class="repere">Bloc 06 · Trois colonnes à pictogrammes</div>
+    <h2 class="titre-de-section">Sed do eiusmod tempor incididunt ut labore et dolore</h2>
+  </div>
+  <div class="trois">
+    <div class="colonne"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="10" height="3" rx=".75" fill="#D1D1CD"/><rect x="11" y="0" width="3" height="10" rx=".75" fill="#D1D1CD"/><rect x="4" y="11" width="10" height="3" rx=".75" fill="#D1D1CD"/><rect x="0" y="4" width="3" height="10" rx=".75" fill="#D1D1CD"/><rect x="4" y="4" width="6" height="6" rx=".75" fill="#131313"/></svg><h3 class="intertitre">Ut enim ad minim</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p></div>
+    <div class="colonne"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="3" width="3" height="8" rx=".75" fill="#D1D1CD"/><rect x="4" y="0" width="3" height="11" rx=".75" fill="#131313"/><rect x="8" y="2" width="2" height="9" rx=".75" fill="#D1D1CD"/><rect x="11" y="4" width="3" height="7" rx=".75" fill="#D1D1CD"/><rect x="0" y="12" width="14" height="2" rx=".75" fill="#131313"/></svg><h3 class="intertitre">Quis nostrud</h3><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p></div>
+    <div class="colonne"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="6.5" height="6.5" rx=".75" fill="#D1D1CD"/><rect x="7.5" y="0" width="6.5" height="6.5" rx=".75" fill="#D1D1CD"/><rect x="0" y="7.5" width="6.5" height="6.5" rx=".75" fill="#D1D1CD"/><rect x="7.5" y="7.5" width="6.5" height="6.5" rx=".75" fill="#FFE600"/></svg><h3 class="intertitre">Excepteur sint</h3><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p></div>
+  </div>
+</section>
+
+<!-- 07 · Le bandeau charbon -->
+<section class="bloc bandeau-charbon">
+  <div class="carte sur-charbon">
+    <div class="texte pile">
+      <div class="surtitre"><span class="etiquette">Lorem ipsum</span><span class="repere">Bloc 07 · Bandeau charbon</span></div>
+      <h2 class="titre-de-section">Ut enim ad minim veniam quis nostrud exercitation</h2>
+      <p class="chapeau">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <div class="boutons"><a class="bouton" href="#">Dolor sit amet</a><a class="bouton contour" href="#">Consectetur</a></div>
+    </div>
+    <svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="14" height="4" rx=".75" fill="#FFE600"/><rect x="0" y="5" width="14" height="4" rx=".75" fill="#595956"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#FFFFFF"/></svg>
+  </div>
+</section>
+
+<!-- 08 · La grille de tuiles -->
+<section class="bloc grille-de-tuiles douze">
+  <div class="texte pile">
+    <div class="repere">Bloc 08 · Grille de tuiles</div>
+    <h2 class="titre-de-section">Duis aute irure dolor</h2>
+    <p class="chapeau">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+    <div class="legende"><span><i class="pastille charbon"></i>Lorem ipsum</span><span><i class="pastille jaune"></i>Dolor sit</span></div>
+  </div>
+  <div class="tuiles">
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="7.5" y="4" width="5" height="5" rx=".75" fill="#F7F7F5"/><rect x="4" y="10" width="12" height="6" rx=".75" fill="#F7F7F5"/></svg><div><strong>Lorem</strong><span class="repere">Sit amet</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="3.5" y="5.5" width="13" height="9" rx=".75" fill="#F7F7F5"/><rect x="12.5" y="7.5" width="2" height="2" rx=".4" fill="#131313"/><rect x="5.5" y="10" width="5" height="1" fill="#131313"/><rect x="5.5" y="12" width="3.5" height="1" fill="#131313"/></svg><div><strong>Ipsum</strong><span class="repere">Adipiscing</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#FFE600"/><rect x="5" y="3.5" width="10" height="13" rx=".75" fill="#131313"/><rect x="7" y="6.5" width="6" height="1" fill="#FFE600"/><rect x="7" y="9" width="3.5" height="1" fill="#FFE600"/><rect x="7" y="11.5" width="6" height="2.5" rx=".4" fill="#FFE600"/></svg><div><strong>Dolor</strong><span class="repere">Eiusmod</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="4" y="4" width="12" height="3" rx=".75" fill="#F7F7F5"/><rect x="4" y="8" width="3.33" height="3.5" rx=".75" fill="#F7F7F5"/><rect x="8.33" y="8" width="3.34" height="3.5" rx=".75" fill="#F7F7F5"/><rect x="12.67" y="8" width="3.33" height="3.5" rx=".75" fill="#F7F7F5"/><rect x="4" y="12.5" width="3.33" height="3.5" rx=".75" fill="#F7F7F5"/><rect x="8.33" y="12.5" width="3.34" height="3.5" rx=".75" fill="#F7F7F5"/><rect x="12.67" y="12.5" width="3.33" height="3.5" rx=".75" fill="#F7F7F5"/></svg><div><strong>Amet</strong><span class="repere">Ut labore</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="4" y="4.5" width="5" height="2.5" rx=".75" fill="#F7F7F5"/><rect x="4" y="8" width="12" height="7.5" rx=".75" fill="#F7F7F5"/></svg><div><strong>Tempor</strong><span class="repere">Magna</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#FFE600"/><rect x="4" y="6.5" width="4.5" height="7" rx=".75" fill="#131313"/><rect x="11.5" y="6.5" width="4.5" height="7" rx=".75" fill="#131313"/><rect x="8" y="9" width="4" height="2" fill="#131313"/></svg><div><strong>Labore</strong><span class="repere">Veniam</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="3.5" y="3.5" width="13" height="13" rx=".75" fill="#F7F7F5"/><rect x="5.5" y="5.5" width="4" height="4" rx=".5" fill="#131313"/><rect x="10.5" y="10.5" width="4" height="4" rx=".5" fill="#131313"/></svg><div><strong>Magna</strong><span class="repere">Nostrud</span></div></div>
+    <div class="tuile"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="3.5" y="6" width="13" height="8" rx=".75" fill="#F7F7F5"/><rect x="13" y="11" width="1.5" height="1.5" rx=".4" fill="#131313"/><rect x="5.5" y="11.25" width="5" height="1" fill="#131313"/></svg><div><strong>Aliqua</strong><span class="repere">Ullamco</span></div></div>
+  </div>
+</section>
+
+<!-- 09 · La citation -->
+<section class="bloc surface citation">
+  <div class="repere">Bloc 09 · Citation</div>
+  <div class="guillemets" aria-hidden="true"><i></i><i></i></div>
+  <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</blockquote>
+  <div class="auteur"><svg viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="2" fill="#131313"/><rect x="7.5" y="4" width="5" height="5" rx=".75" fill="#F7F7F5"/><rect x="4" y="10" width="12" height="6" rx=".75" fill="#F7F7F5"/></svg><div><strong>Dolor Sitamet</strong><span class="repere">Consectetur, Adipiscing</span></div></div>
+</section>
+
+<!-- 10 · Les trois offres -->
+<section class="bloc trois-offres">
+  <div class="pile">
+    <div class="repere">Bloc 10 · Trois offres</div>
+    <h2 class="titre-de-section">Excepteur sint occaecat cupidatat non proident</h2>
+  </div>
+  <div class="trois">
+    <article class="carte formule">
+      <header><div><h3 class="intertitre">Lorem</h3></div><p>Ut enim ad minim veniam quis nostrud.</p></header>
+      <div class="prix"><b>00.–</b><span class="repere">par ipsum</span></div>
+      <ul class="puces"><li>Duis aute irure dolor</li><li>Excepteur sint occaecat</li><li>Sunt in culpa qui officia</li></ul>
+      <a class="bouton contour" href="#">Velit esse</a>
+    </article>
+    <article class="carte formule sur-charbon">
+      <header><div><h3 class="intertitre">Ipsum</h3><span class="etiquette">Dolor</span></div><p>Duis aute irure dolor in reprehenderit.</p></header>
+      <div class="prix"><b>000.–</b><span class="repere">par ipsum</span></div>
+      <ul class="puces"><li>Lorem ipsum dolor sit</li><li>Consectetur adipiscing</li><li>Sed do eiusmod tempor</li><li>Incididunt ut labore</li></ul>
+      <a class="bouton" href="#">Velit esse</a>
+    </article>
+    <article class="carte formule">
+      <header><div><h3 class="intertitre">Dolor</h3></div><p>Excepteur sint occaecat cupidatat non.</p></header>
+      <div class="prix"><b>0000.–</b><span class="repere">par ipsum</span></div>
+      <ul class="puces"><li>Ut enim ad minim veniam</li><li>Quis nostrud exercitation</li><li>Ullamco laboris nisi</li></ul>
+      <a class="bouton contour" href="#">Velit esse</a>
+    </article>
+  </div>
+</section>
+
+<!-- 11 · Les étapes numérotées -->
+<section class="bloc etapes">
+  <div class="entete-de-bloc">
+    <div class="repere">Bloc 11 · Étapes numérotées</div>
+    <h2 class="titre-de-section">Excepteur sint occaecat cupidatat</h2>
+  </div>
+  <div class="trois">
+    <div class="etape"><div class="numero"><span>01</span><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#ECECE9"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#ECECE9"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#ECECE9"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#ECECE9"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div><h3 class="intertitre">Lorem ipsum dolor</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p></div>
+    <div class="etape"><div class="numero"><span>02</span><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#ECECE9"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#ECECE9"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div><h3 class="intertitre">Sed do eiusmod</h3><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p></div>
+    <div class="etape"><div class="numero"><span>03</span><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg></div><h3 class="intertitre">Ut labore magna</h3><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p></div>
+  </div>
+</section>
+
+<!-- 12 · Les questions -->
+<section class="bloc surface questions douze">
+  <div class="texte pile">
+    <div class="repere">Bloc 12 · Questions</div>
+    <h2 class="titre-de-section">Quis nostrud exercitation</h2>
+    <p class="chapeau">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </div>
+  <div class="liste">
+    <details class="question" open><summary>Lorem ipsum dolor sit amet consectetur ?</summary><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p></details>
+    <details class="question"><summary>Sed do eiusmod tempor incididunt ?</summary><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p></details>
+    <details class="question"><summary>Ut labore et dolore magna aliqua ?</summary><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p></details>
+    <details class="question"><summary>Duis aute irure dolor in voluptate ?</summary><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p></details>
+    <details class="question"><summary>Excepteur sint occaecat cupidatat ?</summary><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p></details>
+  </div>
+</section>
+
+<!-- 13 · L'appel final -->
+<section class="bloc appel-final">
+  <div class="repere">Bloc 13 · Appel final</div>
+  <h2 class="titre">Ut enim ad minim <span class="coins">veniam nostrud</span></h2>
+  <p class="chapeau">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+  <div class="boutons"><a class="bouton" href="#">Ut enim ad minim</a><a class="bouton contour" href="#">Quis nostrud</a></div>
+</section>
+
+</main>
+
+<!-- 14 · Le pied de page -->
+<footer class="pied-de-page">
+  <div class="douze">
+    <div class="marque">
+      <a class="logo" href="#"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="8" height="4" rx=".75" fill="#FFE600"/><rect x="9" y="0" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="5" width="5" height="4" rx=".75" fill="#D1D1CD"/><rect x="6" y="5" width="8" height="4" rx=".75" fill="#D1D1CD"/><rect x="0" y="10" width="14" height="4" rx=".75" fill="#131313"/></svg><span>Indos</span></a>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+    </div>
+    <nav aria-label="Lorem"><div class="repere">Lorem</div><a href="#">Ipsum dolor</a><a href="#">Sit amet</a><a href="#">Consectetur</a></nav>
+    <nav aria-label="Dolor"><div class="repere">Dolor</div><a href="#">Adipiscing</a><a href="#">Sed eiusmod</a><a href="#">Tempor</a></nav>
+    <nav aria-label="Amet"><div class="repere">Amet</div><a href="#">Ut labore</a><a href="#">Magna aliqua</a><a href="#">Veniam</a></nav>
+  </div>
+  <div class="mentions"><span class="repere">Bloc 14 · Pied de page</span><span class="repere">Lorem ipsum dolor sit amet</span></div>
+</footer>
+
+</body>
+</html>
